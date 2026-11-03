@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Interview Preparation — Deepak Interview Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/design-system.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+</head>
+<body class="page">
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-brand">
+        <div class="navbar-logo-badge">D</div>
+        <div class="navbar-brand-info">
+          <div class="navbar-brand-name">DEEPAK <span>HUB</span></div>
+          <div class="navbar-brand-tagline">INTERVIEW PREPARATION</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="navbar-nav">
+        <a href="/" class="navbar-link">Home</a>
+        <a href="/pages/subjects.html" class="navbar-link">Subjects</a>
+        <a href="/pages/questions.html" class="navbar-link">Question Bank</a>
+        <a href="/pages/coding-practice.html" class="navbar-link">Coding Practice</a>
+        <a href="/pages/sql-practice.html" class="navbar-link">SQL Practice</a>
+        <a href="/pages/mock-test.html" class="navbar-link">Mock Tests</a>
+        <a href="/pages/dashboard.html" class="navbar-link auth-user-only" style="display: none;">Dashboard</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="navbar-actions">
+        <a href="/pages/login.html" class="btn btn-ghost btn-sm auth-guest-only">Log In</a>
+        <a href="/pages/register.html" class="btn btn-primary btn-sm auth-guest-only">Get Started</a>
+
+        <div class="navbar-user auth-user-only" style="display: none;">
+          <div class="avatar avatar-sm auth-user-avatar">U</div>
+          <span class="navbar-user-name auth-user-name">Student</span>
+        </div>
+        <button class="btn btn-ghost btn-sm auth-user-only" data-action="logout" style="display: none;">Logout</button>
+        <button class="navbar-mobile-toggle" aria-label="Toggle navigation drawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="page-content">
+    <div class="page-header">
+      <div class="container page-header-inner">
+        <div>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/pages/subjects.html">Subjects</a></li>
+            <li class="breadcrumb-item is-active">HR Preparation</li>
+          </ul>
+          <h1 class="page-header-title">HR &amp; Behavioral Interview Guide</h1>
+          <p class="page-header-subtitle">Interviewer intention, structured STAR-method responses, and authentic communication strategies.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pb-16">
+      <div class="flex flex-col gap-6">
+        <!-- Card 1: Tell Me About Yourself -->
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="badge badge-easy">Introduction • High Frequency</span>
+            <span class="tag">Opening Question</span>
+          </div>
+          <h2 class="text-xl font-bold text-white mb-3">"Tell me about yourself and your journey in engineering."</h2>
+
+          <div class="alert alert-info mb-4">
+            <span class="alert-icon">🎯</span>
+            <div class="alert-content">
+              <div class="alert-title">Interviewer's Intention</div>
+              <div class="alert-message">
+                Assess communication clarity, concise storytelling, passion for software engineering, and whether your background aligns with entry-level developer responsibilities.
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded bg-navy-950 border border-subtle mb-4">
+            <div class="text-xs uppercase font-bold text-gold-400 mb-2">Recommended 3-Part Structure: Present &rarr; Past &rarr; Future</div>
+            <p class="text-sm text-gray-300 leading-relaxed">
+              <strong>Present:</strong> "I am a final-year Computer Science Engineering student focused on Python backend engineering and relational database design."<br><br>
+              <strong>Past:</strong> "During my academics, I built production-oriented web applications, mastered algorithmic problem-solving in Python, and designed normalized database schemas for high integrity."<br><br>
+              <strong>Future:</strong> "I'm looking to join a high-standard engineering team where I can apply rigorous software design principles and contribute to scalable products."
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2: Conflict / STAR -->
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="badge badge-medium">Behavioral • STAR Method</span>
+            <span class="tag">Teamwork &amp; Conflict</span>
+          </div>
+          <h2 class="text-xl font-bold text-white mb-3">"Describe a situation where you had a disagreement with a team member during a project."</h2>
+
+          <div class="alert alert-info mb-4">
+            <span class="alert-icon">🎯</span>
+            <div class="alert-content">
+              <div class="alert-title">Interviewer's Intention</div>
+              <div class="alert-message">
+                Verify emotional maturity, constructive conflict resolution, ego management, and focus on technical merit rather than personal friction.
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded bg-navy-950 border border-subtle">
+            <div class="text-xs uppercase font-bold text-gold-400 mb-2">STAR Framework Breakdown</div>
+            <ul class="text-sm text-gray-300 space-y-2 list-none p-0">
+              <li><strong>Situation:</strong> During our capstone database design, my teammate proposed storing denormalized JSON strings, while I advocated for 3NF tables.</li>
+              <li><strong>Task:</strong> Align on a database structure that satisfied query speed without sacrificing data integrity.</li>
+              <li><strong>Action:</strong> Rather than arguing, I created a quick benchmark script simulating 10,000 updates to compare locking behavior and consistency. We reviewed the hard data together.</li>
+              <li><strong>Result:</strong> We agreed on normalized tables with dedicated indexes, delivering zero inconsistency and sub-10ms queries.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 3: Why Should We Hire You -->
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="badge badge-medium">Value Proposition</span>
+            <span class="tag">Closing Question</span>
+          </div>
+          <h2 class="text-xl font-bold text-white mb-3">"Why should we hire you over other engineering candidates?"</h2>
+
+          <div class="alert alert-info mb-4">
+            <span class="alert-icon">🎯</span>
+            <div class="alert-content">
+              <div class="alert-title">Interviewer's Intention</div>
+              <div class="alert-message">
+                Distinguish candidates who possess genuine software engineering discipline and self-motivation versus those who only know surface-level syntax.
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded bg-navy-950 border border-subtle">
+            <div class="text-xs uppercase font-bold text-gold-400 mb-2">Professional Articulation</div>
+            <p class="text-sm text-gray-300 leading-relaxed">
+              "Beyond academic coursework, I focus on software engineering rigor — writing test-driven code, understanding database query plans, and avoiding superficial shortcuts. I learn quickly, communicate transparently, and take full ownership of the features I build."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 Deepak Interview Hub. HR Module.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api/client.js"></script>
+  <script src="/js/utils/toast.js"></script>
+  <script src="/js/components/navbar.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
+

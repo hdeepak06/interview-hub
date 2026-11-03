@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saved Bookmarks — Deepak Interview Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/design-system.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+</head>
+<body class="page">
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-brand">
+        <div class="navbar-logo-badge">D</div>
+        <div class="navbar-brand-info">
+          <div class="navbar-brand-name">DEEPAK <span>HUB</span></div>
+          <div class="navbar-brand-tagline">INTERVIEW PREPARATION</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="navbar-nav">
+        <a href="/" class="navbar-link">Home</a>
+        <a href="/pages/subjects.html" class="navbar-link">Subjects</a>
+        <a href="/pages/questions.html" class="navbar-link">Question Bank</a>
+        <a href="/pages/coding-practice.html" class="navbar-link">Coding Practice</a>
+        <a href="/pages/sql-practice.html" class="navbar-link">SQL Practice</a>
+        <a href="/pages/mock-test.html" class="navbar-link">Mock Tests</a>
+        <a href="/pages/dashboard.html" class="navbar-link auth-user-only" style="display: none;">Dashboard</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="navbar-actions">
+        <div class="navbar-user auth-user-only" style="display: none;">
+          <div class="avatar avatar-sm auth-user-avatar">U</div>
+          <span class="navbar-user-name auth-user-name">Student</span>
+        </div>
+        <button class="btn btn-ghost btn-sm auth-user-only" data-action="logout" style="display: none;">Logout</button>
+        <button class="navbar-mobile-toggle" aria-label="Toggle navigation drawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="page-content">
+    <div class="page-header">
+      <div class="container page-header-inner">
+        <div>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/pages/dashboard.html">Dashboard</a></li>
+            <li class="breadcrumb-item is-active">Bookmarks</li>
+          </ul>
+          <h1 class="page-header-title">Saved Questions &amp; Problems</h1>
+          <p class="page-header-subtitle">Your bookmarked technical questions saved for rapid revision before interviews.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pb-16">
+      <div id="bookmarks-loader" class="text-center py-12">
+        <div class="spinner spinner-md mb-3"></div>
+        <div class="text-sm text-gray-400">Loading your saved bookmarks...</div>
+      </div>
+
+      <div id="bookmarks-list" class="flex flex-col gap-4" style="display: none;">
+        <!-- Injected dynamically -->
+      </div>
+
+      <div id="bookmarks-empty" class="empty-state py-12" style="display: none;">
+        <div class="empty-state-icon">🔖</div>
+        <h3 class="empty-state-title">No bookmarks saved yet</h3>
+        <p class="empty-state-description">
+          When browsing questions in the Question Bank or Coding Sandbox, click the bookmark icon to save them here for quick revision.
+        </p>
+        <a href="/pages/questions.html" class="btn btn-primary mt-4">Browse Question Bank</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 Deepak Interview Hub. Saved Bookmarks.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api/client.js"></script>
+  <script src="/js/utils/toast.js"></script>
+  <script src="/js/components/navbar.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const loader = document.getElementById('bookmarks-loader');
+      const list = document.getElementById('bookmarks-list');
+      const empty = document.getElementById('bookmarks-empty');
+
+      try {
+        const response = await APIClient.get('/bookmarks/');
+        const items = response.results || (Array.isArray(response) ? response : []);
+
+        if (items.length === 0) {
+          empty.style.display = 'flex';
+        } else {
+          list.innerHTML = items.map(bm => `
+            <div class="card p-5 flex items-center justify-between" id="bm-${bm.id}">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="badge badge-subject">${bm.subject_name || 'Technical'}</span>
+                  <span class="badge badge-${(bm.difficulty || 'easy').toLowerCase()}">${bm.difficulty || 'Easy'}</span>
+                </div>
+                <h3 class="text-base font-bold text-white">${bm.question_text || bm.title}</h3>
+              </div>
+              <div class="flex items-center gap-3">
+                <a href="/pages/questions.html?q=${encodeURIComponent(bm.question_text || '')}" class="btn btn-secondary btn-sm">View</a>
+                <button class="btn btn-ghost btn-sm text-error" onclick="removeBookmark(${bm.id})">Remove</button>
+              </div>
+            </div>
+          `).join('');
+          list.style.display = 'flex';
+        }
+      } catch (e) {
+        empty.style.display = 'flex';
+      } finally {
+        loader.style.display = 'none';
+      }
+    });
+
+    async function removeBookmark(id) {
+      try {
+        await APIClient.delete(`/bookmarks/${id}/`);
+        const el = document.getElementById(`bm-${id}`);
+        if (el) el.remove();
+        Toast.success('Bookmark removed');
+      } catch (e) {
+        Toast.error('Failed to remove bookmark');
+      }
+    }
+  </script>
+</body>
+</html>
+

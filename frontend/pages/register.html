@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration — Deepak Interview Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/design-system.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+</head>
+<body class="auth-page">
+  <div class="auth-container" style="max-width: 520px;">
+    <div class="auth-card">
+      <div class="auth-header">
+        <a href="/" class="auth-header-logo" aria-label="Deepak Interview Hub Home">
+          <div class="navbar-logo-badge" style="width: 3rem; height: 3rem; font-size: 1.25rem;">D</div>
+        </a>
+        <h1 class="auth-title">Create Student Account</h1>
+        <p class="auth-subtitle">Join Deepak Interview Hub for verified CS engineering interview preparation</p>
+      </div>
+
+      <div id="auth-alert" class="alert alert-error" style="display: none;">
+        <span class="alert-icon">✕</span>
+        <div class="alert-content">
+          <div class="alert-title">Registration Error</div>
+          <div class="alert-message" id="auth-alert-msg"></div>
+        </div>
+      </div>
+
+      <form id="register-form" novalidate>
+        <div class="form-row form-row-2">
+          <div class="form-group">
+            <label for="first_name" class="form-label form-label-required">First Name</label>
+            <input type="text" id="first_name" name="first_name" class="form-input" placeholder="e.g. Deepak" required>
+            <div class="form-error" id="first_name-error" style="display: none;"></div>
+          </div>
+          <div class="form-group">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input type="text" id="last_name" name="last_name" class="form-input" placeholder="e.g. Kumar">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="username" class="form-label form-label-required">Username</label>
+          <input type="text" id="username" name="username" class="form-input" placeholder="e.g. deepak_cse" required autocomplete="username">
+          <div class="form-error" id="username-error" style="display: none;"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label form-label-required">College or Personal Email</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="student@example.com" required autocomplete="email">
+          <div class="form-error" id="email-error" style="display: none;"></div>
+        </div>
+
+        <div class="form-row form-row-2">
+          <div class="form-group">
+            <label for="branch" class="form-label form-label-required">Engineering Branch</label>
+            <select id="branch" name="branch" class="form-select" required>
+              <option value="" disabled selected>Select Branch</option>
+              <option value="CSE">BE - Computer Science (CSE)</option>
+              <option value="ISE">BE - Information Science (ISE)</option>
+              <option value="AIML">BE - Artificial Intelligence &amp; ML (AIML)</option>
+              <option value="OTHER">Other Engineering Branch / Fresher</option>
+            </select>
+            <div class="form-error" id="branch-error" style="display: none;"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="college_name" class="form-label">College / University</label>
+            <input type="text" id="college_name" name="college_name" class="form-input" placeholder="e.g. VTU / Engineering College">
+          </div>
+        </div>
+
+        <div class="form-row form-row-2">
+          <div class="form-group">
+            <label for="password" class="form-label form-label-required">Password</label>
+            <input type="password" id="password" name="password" class="form-input" placeholder="Min 8 characters" required autocomplete="new-password">
+            <div class="form-error" id="password-error" style="display: none;"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirm_password" class="form-label form-label-required">Confirm Password</label>
+            <input type="password" id="confirm_password" name="confirm_password" class="form-input" placeholder="Re-enter password" required autocomplete="new-password">
+            <div class="form-error" id="confirm_password-error" style="display: none;"></div>
+          </div>
+        </div>
+
+        <button type="submit" id="register-btn" class="btn btn-primary btn-block btn-lg mt-4">
+          <span class="btn-text">Create Free Account</span>
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Already have an account? <a href="/pages/login.html">Sign in here</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api/client.js"></script>
+  <script src="/js/utils/toast.js"></script>
+  <script src="/js/pages/register.js"></script>
+</body>
+</html>
+

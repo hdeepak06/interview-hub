@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Practice — Deepak Interview Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/design-system.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+</head>
+<body class="page">
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-brand">
+        <div class="navbar-logo-badge">D</div>
+        <div class="navbar-brand-info">
+          <div class="navbar-brand-name">DEEPAK <span>HUB</span></div>
+          <div class="navbar-brand-tagline">INTERVIEW PREPARATION</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="navbar-nav">
+        <a href="/" class="navbar-link">Home</a>
+        <a href="/pages/subjects.html" class="navbar-link">Subjects</a>
+        <a href="/pages/questions.html" class="navbar-link">Question Bank</a>
+        <a href="/pages/coding-practice.html" class="navbar-link">Coding Practice</a>
+        <a href="/pages/sql-practice.html" class="navbar-link is-active">SQL Practice</a>
+        <a href="/pages/mock-test.html" class="navbar-link">Mock Tests</a>
+        <a href="/pages/dashboard.html" class="navbar-link auth-user-only" style="display: none;">Dashboard</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="navbar-actions">
+        <a href="/pages/login.html" class="btn btn-ghost btn-sm auth-guest-only">Log In</a>
+        <a href="/pages/register.html" class="btn btn-primary btn-sm auth-guest-only">Get Started</a>
+
+        <div class="navbar-user auth-user-only" style="display: none;">
+          <div class="avatar avatar-sm auth-user-avatar">U</div>
+          <span class="navbar-user-name auth-user-name">Student</span>
+        </div>
+        <button class="btn btn-ghost btn-sm auth-user-only" data-action="logout" style="display: none;">Logout</button>
+        <button class="navbar-mobile-toggle" aria-label="Toggle navigation drawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Backdrop -->
+  <div class="mobile-drawer-backdrop" aria-hidden="true"></div>
+
+  <!-- Mobile Drawer -->
+  <aside class="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <div class="navbar-brand">
+        <div class="navbar-logo-badge">D</div>
+        <div class="navbar-brand-name">DEEPAK <span>HUB</span></div>
+      </div>
+      <button class="mobile-drawer-close">&times;</button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="/" class="mobile-drawer-link">Home</a>
+      <a href="/pages/subjects.html" class="mobile-drawer-link">Subjects</a>
+      <a href="/pages/questions.html" class="mobile-drawer-link">Question Bank</a>
+      <a href="/pages/coding-practice.html" class="mobile-drawer-link">Coding Practice</a>
+      <a href="/pages/sql-practice.html" class="mobile-drawer-link is-active">SQL Practice</a>
+      <a href="/pages/mock-test.html" class="mobile-drawer-link">Mock Tests</a>
+      <a href="/pages/dashboard.html" class="mobile-drawer-link auth-user-only" style="display: none;">Dashboard</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="page-content">
+    <div class="page-header">
+      <div class="container page-header-inner">
+        <div>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item is-active">SQL Practice</li>
+          </ul>
+          <h1 class="page-header-title">SQL Query Engineering Exercises</h1>
+          <p class="page-header-subtitle">Realistic database schemas, sample records, query challenges, and verified SQL solutions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pb-16">
+      <div class="grid grid-cols-3 gap-8">
+        <!-- Exercise List (1 column) -->
+        <div class="card p-5">
+          <h3 class="text-base font-bold text-white mb-4">SQL Query Challenges</h3>
+          <div class="flex flex-col gap-2" id="sql-exercise-list">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Exercise Details (2 columns) -->
+        <div class="col-span-2 card p-6">
+          <div class="flex items-center justify-between mb-4 border-b border-subtle pb-4">
+            <div>
+              <span class="badge badge-medium" id="sql-diff-badge">Medium</span>
+              <h2 class="text-2xl font-bold text-white mt-2" id="sql-title">Second Highest Salary</h2>
+            </div>
+            <span class="tag" id="sql-topic-tag">Aggregation &amp; Subqueries</span>
+          </div>
+
+          <!-- Problem Statement -->
+          <div class="mb-6">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-gold-400 mb-2">Requirement</h4>
+            <p class="text-sm text-gray-300 leading-relaxed" id="sql-requirement">
+              Write an SQL query to find the second highest salary from the Employee table. If there is no second highest salary, return NULL.
+            </p>
+          </div>
+
+          <!-- Database Schema & Sample Records -->
+          <div class="mb-6">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-gold-400 mb-2">Database Schema &amp; Sample Data</h4>
+            <div class="p-4 rounded bg-navy-950 border border-subtle">
+              <pre class="font-mono text-xs text-gray-300" id="sql-schema">Table: Employee
++----+--------+
+| id | salary |
++----+--------+
+| 1  | 100    |
+| 2  | 200    |
+| 3  | 300    |
++----+--------+</pre>
+            </div>
+          </div>
+
+          <!-- Verified Solution -->
+          <div class="mb-6">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-gold-400 mb-2">Correct SQL Query</h4>
+            <div class="code-block">
+              <div class="code-block-header">
+                <span class="code-language">PostgreSQL / Standard SQL</span>
+              </div>
+              <pre><code id="sql-solution">SELECT (
+    SELECT DISTINCT salary 
+    FROM Employee 
+    ORDER BY salary DESC 
+    OFFSET 1 LIMIT 1
+) AS SecondHighestSalary;</code></pre>
+            </div>
+          </div>
+
+          <!-- Expected Output -->
+          <div class="mb-6">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Expected Query Result</h4>
+            <div class="p-3 rounded bg-navy-950 border border-subtle">
+              <pre class="font-mono text-xs text-easy" id="sql-output">+---------------------+
+| SecondHighestSalary |
++---------------------+
+| 200                 |
++---------------------+</pre>
+            </div>
+          </div>
+
+          <!-- Explanation -->
+          <div class="p-4 rounded bg-navy-700 border border-subtle">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-2">Query Execution Explanation</h4>
+            <p class="text-xs text-gray-300 leading-relaxed" id="sql-explanation">
+              The scalar subquery ensures that if the Employee table contains fewer than two distinct salaries, the outer SELECT statement evaluates to NULL as required.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 Deepak Interview Hub. SQL Sandbox.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api/client.js"></script>
+  <script src="/js/utils/toast.js"></script>
+  <script src="/js/components/navbar.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    const sqlExercises = [
+      {
+        id: 1,
+        title: "Second Highest Salary",
+        difficulty: "Medium",
+        topic: "Subqueries & Aggregation",
+        requirement: "Find the second highest distinct salary from the Employee table. Return NULL if fewer than two distinct salaries exist.",
+        schema: `Table: Employee
++----+--------+
+| id | salary |
++----+--------+
+| 1  | 100    |
+| 2  | 200    |
+| 3  | 300    |
++----+--------+`,
+        solution: `SELECT (
+    SELECT DISTINCT salary 
+    FROM Employee 
+    ORDER BY salary DESC 
+    OFFSET 1 LIMIT 1
+) AS SecondHighestSalary;`,
+        output: `+---------------------+
+| SecondHighestSalary |
++---------------------+
+| 200                 |
++---------------------+`,
+        explanation: "Wrapping the OFFSET 1 LIMIT 1 query inside an outer SELECT guarantees a NULL return value if the offset exceeds row count."
+      },
+      {
+        id: 2,
+        title: "Employees Earning More Than Managers",
+        difficulty: "Easy",
+        topic: "Self Joins",
+        requirement: "Find employees who earn more than their direct managers. Return the employee names.",
+        schema: `Table: Employee
++----+-------+--------+-----------+
+| id | name  | salary | managerId |
++----+-------+--------+-----------+
+| 1  | Joe   | 70000  | 3         |
+| 2  | Henry | 80000  | 4         |
+| 3  | Sam   | 60000  | Null      |
+| 4  | Max   | 90000  | Null      |
++----+-------+--------+-----------+`,
+        solution: `SELECT e.name AS Employee
+FROM Employee e
+JOIN Employee m ON e.managerId = m.id
+WHERE e.salary > m.salary;`,
+        output: `+----------+
+| Employee |
++----------+
+| Joe      |
++----------+`,
+        explanation: "Self-join matches each employee record with their manager row using `managerId = m.id`, followed by salary comparison filter."
+      },
+      {
+        id: 3,
+        title: "Department Top 3 Salaries",
+        difficulty: "Difficult",
+        topic: "Window Functions (DENSE_RANK)",
+        requirement: "Find the employees who are high earners in each department (earning a salary in the top 3 unique salaries for that department).",
+        schema: `Table: Employee (id, name, salary, departmentId)
+Table: Department (id, name)`,
+        solution: `WITH RankedSalaries AS (
+    SELECT 
+        d.name AS Department,
+        e.name AS Employee,
+        e.salary AS Salary,
+        DENSE_RANK() OVER (
+            PARTITION BY e.departmentId 
+            ORDER BY e.salary DESC
+        ) AS rank_pos
+    FROM Employee e
+    JOIN Department d ON e.departmentId = d.id
+)
+SELECT Department, Employee, Salary
+FROM RankedSalaries
+WHERE rank_pos <= 3;`,
+        output: `+------------+----------+--------+
+| Department | Employee | Salary |
++------------+----------+--------+
+| IT         | Max      | 90000  |
+| IT         | Joe      | 85000  |
+| IT         | Randy    | 85000  |
+| IT         | Will     | 70000  |
++------------+----------+--------+`,
+        explanation: "Uses DENSE_RANK() window function partitioned by department to properly handle ties without skipping ranks."
+      }
+    ];
+
+    const listEl = document.getElementById('sql-exercise-list');
+
+    function selectExercise(ex) {
+      document.getElementById('sql-title').textContent = ex.title;
+      document.getElementById('sql-diff-badge').textContent = ex.difficulty;
+      document.getElementById('sql-diff-badge').className = `badge badge-${ex.difficulty.toLowerCase()}`;
+      document.getElementById('sql-topic-tag').textContent = ex.topic;
+      document.getElementById('sql-requirement').textContent = ex.requirement;
+      document.getElementById('sql-schema').textContent = ex.schema;
+      document.getElementById('sql-solution').textContent = ex.solution;
+      document.getElementById('sql-output').textContent = ex.output;
+      document.getElementById('sql-explanation').textContent = ex.explanation;
+
+      document.querySelectorAll('.sql-list-item').forEach(el => {
+        el.classList.toggle('is-active', el.dataset.id == ex.id);
+      });
+    }
+
+    listEl.innerHTML = sqlExercises.map((ex, idx) => `
+      <div class="sql-list-item p-3 rounded cursor-pointer border border-subtle transition ${idx === 0 ? 'is-active bg-navy-700' : 'bg-navy-800'}" data-id="${ex.id}">
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-semibold text-white">${ex.title}</span>
+          <span class="badge badge-${ex.difficulty.toLowerCase()} text-xs">${ex.difficulty}</span>
+        </div>
+      </div>
+    `).join('');
+
+    listEl.querySelectorAll('.sql-list-item').forEach((el, idx) => {
+      el.addEventListener('click', () => {
+        selectExercise(sqlExercises[idx]);
+      });
+    });
+  </script>
+</body>
+</html>
+

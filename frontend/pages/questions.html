@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question Bank — Deepak Interview Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/design-system.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+</head>
+<body class="page">
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-brand">
+        <div class="navbar-logo-badge">D</div>
+        <div class="navbar-brand-info">
+          <div class="navbar-brand-name">DEEPAK <span>HUB</span></div>
+          <div class="navbar-brand-tagline">INTERVIEW PREPARATION</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="navbar-nav">
+        <a href="/" class="navbar-link">Home</a>
+        <a href="/pages/subjects.html" class="navbar-link">Subjects</a>
+        <a href="/pages/questions.html" class="navbar-link is-active">Question Bank</a>
+        <a href="/pages/coding-practice.html" class="navbar-link">Coding Practice</a>
+        <a href="/pages/sql-practice.html" class="navbar-link">SQL Practice</a>
+        <a href="/pages/mock-test.html" class="navbar-link">Mock Tests</a>
+        <a href="/pages/dashboard.html" class="navbar-link auth-user-only" style="display: none;">Dashboard</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="navbar-actions">
+        <a href="/pages/bookmarks.html" class="btn btn-ghost btn-icon btn-sm auth-user-only" style="display: none;" title="Bookmarks">🔖</a>
+        <a href="/pages/login.html" class="btn btn-ghost btn-sm auth-guest-only">Log In</a>
+        <a href="/pages/register.html" class="btn btn-primary btn-sm auth-guest-only">Get Started</a>
+
+        <div class="navbar-user auth-user-only" style="display: none;">
+          <div class="avatar avatar-sm auth-user-avatar">U</div>
+          <span class="navbar-user-name auth-user-name">Student</span>
+        </div>
+        <button class="btn btn-ghost btn-sm auth-user-only" data-action="logout" style="display: none;">Logout</button>
+        <button class="navbar-mobile-toggle" aria-label="Toggle navigation drawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Backdrop -->
+  <div class="mobile-drawer-backdrop" aria-hidden="true"></div>
+
+  <!-- Mobile Drawer -->
+  <aside class="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <div class="navbar-brand">
+        <div class="navbar-logo-badge">D</div>
+        <div class="navbar-brand-name">DEEPAK <span>HUB</span></div>
+      </div>
+      <button class="mobile-drawer-close">&times;</button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="/" class="mobile-drawer-link">Home</a>
+      <a href="/pages/subjects.html" class="mobile-drawer-link">Subjects</a>
+      <a href="/pages/questions.html" class="mobile-drawer-link is-active">Question Bank</a>
+      <a href="/pages/coding-practice.html" class="mobile-drawer-link">Coding Practice</a>
+      <a href="/pages/sql-practice.html" class="mobile-drawer-link">SQL Practice</a>
+      <a href="/pages/mock-test.html" class="mobile-drawer-link">Mock Tests</a>
+      <a href="/pages/dashboard.html" class="mobile-drawer-link auth-user-only" style="display: none;">Dashboard</a>
+      <a href="/pages/bookmarks.html" class="mobile-drawer-link auth-user-only" style="display: none;">Bookmarks</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="page-content">
+    <div class="page-header">
+      <div class="container page-header-inner">
+        <div>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item is-active">Question Bank</li>
+          </ul>
+          <h1 class="page-header-title">Technical Interview Questions</h1>
+          <p class="page-header-subtitle">Verified questions with explanations, reference code, outputs, and interview tips.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Search & Filter Controls -->
+      <div class="card p-5 mb-8">
+        <div class="grid grid-cols-4 gap-4 items-center">
+          <!-- Keyword search -->
+          <div class="col-span-2">
+            <input type="text" id="filter-search" class="form-input" placeholder="Search by question keyword or topic...">
+          </div>
+
+          <!-- Subject filter -->
+          <div>
+            <select id="filter-subject" class="form-select">
+              <option value="">All Subjects</option>
+              <option value="python">Python</option>
+              <option value="sql">SQL</option>
+              <option value="dsa">DSA</option>
+              <option value="dbms">DBMS</option>
+              <option value="oop">OOP Concepts</option>
+              <option value="django">Django</option>
+              <option value="rest-api">REST API</option>
+              <option value="os">Operating Systems</option>
+              <option value="cn">Computer Networks</option>
+              <option value="aptitude">Aptitude &amp; Reasoning</option>
+              <option value="hr">HR Preparation</option>
+              <option value="viva">Project Viva</option>
+            </select>
+          </div>
+
+          <!-- Difficulty filter -->
+          <div>
+            <select id="filter-difficulty" class="form-select">
+              <option value="">All Difficulties</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="difficult">Difficult</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question List Container -->
+      <div id="questions-loader" class="text-center py-12">
+        <div class="spinner spinner-md mb-3"></div>
+        <div class="text-sm text-gray-400">Loading verified technical questions...</div>
+      </div>
+
+      <div id="questions-list" class="flex flex-col gap-6" style="display: none;">
+        <!-- Question Cards Injected Dynamically -->
+      </div>
+
+      <div id="questions-empty" class="empty-state py-12" style="display: none;">
+        <div class="empty-state-icon">🔍</div>
+        <h3 class="empty-state-title">No questions found</h3>
+        <p class="empty-state-description">Try adjusting your filters or keyword query to find questions.</p>
+      </div>
+
+      <!-- Pagination -->
+      <div id="questions-pagination" class="pagination" style="display: none;">
+        <!-- Injected Dynamically -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 Deepak Interview Hub. Learn. Practise. Test.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api/client.js"></script>
+  <script src="/js/utils/toast.js"></script>
+  <script src="/js/components/navbar.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/pages/questions.js"></script>
+</body>
+</html>
+
