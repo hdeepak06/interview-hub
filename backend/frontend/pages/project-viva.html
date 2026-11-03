@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Viva Examination — Deepak Interview Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/design-system.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+</head>
+<body class="page">
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-brand">
+        <div class="navbar-logo-badge">D</div>
+        <div class="navbar-brand-info">
+          <div class="navbar-brand-name">DEEPAK <span>HUB</span></div>
+          <div class="navbar-brand-tagline">INTERVIEW PREPARATION</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="navbar-nav">
+        <a href="/" class="navbar-link">Home</a>
+        <a href="/pages/subjects.html" class="navbar-link">Subjects</a>
+        <a href="/pages/questions.html" class="navbar-link">Question Bank</a>
+        <a href="/pages/coding-practice.html" class="navbar-link">Coding Practice</a>
+        <a href="/pages/sql-practice.html" class="navbar-link">SQL Practice</a>
+        <a href="/pages/mock-test.html" class="navbar-link">Mock Tests</a>
+        <a href="/pages/dashboard.html" class="navbar-link auth-user-only" style="display: none;">Dashboard</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="navbar-actions">
+        <a href="/pages/login.html" class="btn btn-ghost btn-sm auth-guest-only">Log In</a>
+        <a href="/pages/register.html" class="btn btn-primary btn-sm auth-guest-only">Get Started</a>
+
+        <div class="navbar-user auth-user-only" style="display: none;">
+          <div class="avatar avatar-sm auth-user-avatar">U</div>
+          <span class="navbar-user-name auth-user-name">Student</span>
+        </div>
+        <button class="btn btn-ghost btn-sm auth-user-only" data-action="logout" style="display: none;">Logout</button>
+        <button class="navbar-mobile-toggle" aria-label="Toggle navigation drawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="page-content">
+    <div class="page-header">
+      <div class="container page-header-inner">
+        <div>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/pages/subjects.html">Subjects</a></li>
+            <li class="breadcrumb-item is-active">Project Viva</li>
+          </ul>
+          <h1 class="page-header-title">Engineering Project Viva Preparation</h1>
+          <p class="page-header-subtitle">Architecture defense, database normalization justification, API security, and viva panel trade-offs.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pb-16">
+      <div class="flex flex-col gap-6">
+        <!-- Viva Question 1 -->
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-2">
+            <span class="badge badge-medium">Architecture Defense</span>
+            <span class="text-xs text-gray-500">Core Viva Question</span>
+          </div>
+          <h2 class="text-xl font-bold text-white mb-3">
+            "Why did you choose a monolithic Django architecture over microservices for your project?"
+          </h2>
+          <div class="p-4 rounded bg-navy-950 border border-subtle">
+            <div class="text-xs uppercase font-bold text-gold-400 mb-2">Verified Architectural Defense</div>
+            <p class="text-sm text-gray-300 leading-relaxed">
+              "For our team size and system scale, a modular monolith in Django provides clear domain boundaries via Django apps without the high operational overhead of distributed transactions, network latency between services, deployment complexity, or tracing distributed failures. Should specific services hit bottlenecks later, modular Django apps can be extracted into standalone microservices cleanly."
+            </p>
+          </div>
+        </div>
+
+        <!-- Viva Question 2 -->
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-2">
+            <span class="badge badge-difficult">Database Defense</span>
+            <span class="text-xs text-gray-500">Schema Integrity</span>
+          </div>
+          <h2 class="text-xl font-bold text-white mb-3">
+            "How did you ensure database normalization, and did you intentionally denormalize anywhere?"
+          </h2>
+          <div class="p-4 rounded bg-navy-950 border border-subtle">
+            <div class="text-xs uppercase font-bold text-gold-400 mb-2">Verified Schema Defense</div>
+            <p class="text-sm text-gray-300 leading-relaxed">
+              "All core transactional entities are normalized up to 3NF to eliminate insert, update, and deletion anomalies. For high-throughput analytics, such as student progress dashboards, we computed aggregations via database indexes rather than storing redundant counts that could drift out of sync. Denormalization was avoided to guarantee single sources of truth."
+            </p>
+          </div>
+        </div>
+
+        <!-- Viva Question 3 -->
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-2">
+            <span class="badge badge-medium">Security Defense</span>
+            <span class="text-xs text-gray-500">Vulnerability Mitigation</span>
+          </div>
+          <h2 class="text-xl font-bold text-white mb-3">
+            "How does your backend prevent SQL injection and CSRF attacks?"
+          </h2>
+          <div class="p-4 rounded bg-navy-950 border border-subtle">
+            <div class="text-xs uppercase font-bold text-gold-400 mb-2">Security Audit Defense</div>
+            <p class="text-sm text-gray-300 leading-relaxed">
+              "SQL injection is prevented by utilizing Django ORM parameterized queries for all database operations, ensuring untrusted user inputs are treated strictly as query literals rather than executable SQL syntax. CSRF protection is enforced on state-changing endpoints using synchronized CSRF tokens and strict Origin/Referer header checks."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 Deepak Interview Hub. Project Viva Module.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api/client.js"></script>
+  <script src="/js/utils/toast.js"></script>
+  <script src="/js/components/navbar.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
+

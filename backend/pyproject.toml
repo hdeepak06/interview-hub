@@ -1,0 +1,14 @@
+[project]
+name = "deepak-interview-hub-backend"
+version = "1.0.0"
+description = "Deepak Interview Hub Backend"
+requires-python = ">=3.12"
+dependencies = [
+    "Django>=5.0,<6.2",
+    "djangorestframework>=3.14.0",
+    "django-cors-headers>=4.0.0",
+    "psycopg2-binary>=2.9.9",
+]
+
+[tool.vercel]
+entrypoint = "config/wsgi.py"

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coding Practice — Deepak Interview Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/design-system.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+</head>
+<body class="page">
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-brand">
+        <div class="navbar-logo-badge">D</div>
+        <div class="navbar-brand-info">
+          <div class="navbar-brand-name">DEEPAK <span>HUB</span></div>
+          <div class="navbar-brand-tagline">INTERVIEW PREPARATION</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="navbar-nav">
+        <a href="/" class="navbar-link">Home</a>
+        <a href="/pages/subjects.html" class="navbar-link">Subjects</a>
+        <a href="/pages/questions.html" class="navbar-link">Question Bank</a>
+        <a href="/pages/coding-practice.html" class="navbar-link is-active">Coding Practice</a>
+        <a href="/pages/sql-practice.html" class="navbar-link">SQL Practice</a>
+        <a href="/pages/mock-test.html" class="navbar-link">Mock Tests</a>
+        <a href="/pages/dashboard.html" class="navbar-link auth-user-only" style="display: none;">Dashboard</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="navbar-actions">
+        <a href="/pages/login.html" class="btn btn-ghost btn-sm auth-guest-only">Log In</a>
+        <a href="/pages/register.html" class="btn btn-primary btn-sm auth-guest-only">Get Started</a>
+
+        <div class="navbar-user auth-user-only" style="display: none;">
+          <div class="avatar avatar-sm auth-user-avatar">U</div>
+          <span class="navbar-user-name auth-user-name">Student</span>
+        </div>
+        <button class="btn btn-ghost btn-sm auth-user-only" data-action="logout" style="display: none;">Logout</button>
+        <button class="navbar-mobile-toggle" aria-label="Toggle navigation drawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Backdrop -->
+  <div class="mobile-drawer-backdrop" aria-hidden="true"></div>
+
+  <!-- Mobile Drawer -->
+  <aside class="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <div class="navbar-brand">
+        <div class="navbar-logo-badge">D</div>
+        <div class="navbar-brand-name">DEEPAK <span>HUB</span></div>
+      </div>
+      <button class="mobile-drawer-close">&times;</button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="/" class="mobile-drawer-link">Home</a>
+      <a href="/pages/subjects.html" class="mobile-drawer-link">Subjects</a>
+      <a href="/pages/questions.html" class="mobile-drawer-link">Question Bank</a>
+      <a href="/pages/coding-practice.html" class="mobile-drawer-link is-active">Coding Practice</a>
+      <a href="/pages/sql-practice.html" class="mobile-drawer-link">SQL Practice</a>
+      <a href="/pages/mock-test.html" class="mobile-drawer-link">Mock Tests</a>
+      <a href="/pages/dashboard.html" class="mobile-drawer-link auth-user-only" style="display: none;">Dashboard</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="page-content">
+    <div class="page-header">
+      <div class="container page-header-inner">
+        <div>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item is-active">Coding Practice</li>
+          </ul>
+          <h1 class="page-header-title">Python Coding Practice Sandbox</h1>
+          <p class="page-header-subtitle">Standard engineering interview algorithmic problems with time &amp; space complexity breakdowns.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pb-16">
+      <div class="grid grid-cols-3 gap-8">
+        <!-- Problems List (1 column) -->
+        <div class="card p-5">
+          <h3 class="text-base font-bold text-white mb-4">Core Problem Catalog</h3>
+          <div class="flex flex-col gap-2" id="coding-problem-list">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Problem Detail & Workspace (2 columns) -->
+        <div class="col-span-2 card p-6" id="problem-detail-container">
+          <div class="flex items-center justify-between mb-4 border-b border-subtle pb-4">
+            <div>
+              <span class="badge badge-easy" id="prob-diff-badge">Easy</span>
+              <h2 class="text-2xl font-bold text-white mt-2" id="prob-title">Reverse a String</h2>
+            </div>
+            <div class="text-right">
+              <span class="text-xs text-gray-400 block">Time: <strong class="text-white" id="prob-time-comp">O(n)</strong></span>
+              <span class="text-xs text-gray-400 block">Space: <strong class="text-white" id="prob-space-comp">O(n)</strong></span>
+            </div>
+          </div>
+
+          <!-- Problem Statement -->
+          <div class="mb-6">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-gold-400 mb-2">Problem Statement</h4>
+            <p class="text-sm text-gray-300 leading-relaxed mb-4" id="prob-statement">
+              Write a function that reverses an input string without using built-in reverse helpers.
+            </p>
+
+            <div class="grid grid-cols-2 gap-4 my-4">
+              <div class="p-3 rounded bg-navy-950 border border-subtle">
+                <span class="text-xs font-bold text-gray-400">Sample Input:</span>
+                <pre class="font-mono text-xs text-white mt-1" id="prob-sample-input">"hello"</pre>
+              </div>
+              <div class="p-3 rounded bg-navy-950 border border-subtle">
+                <span class="text-xs font-bold text-gray-400">Sample Output:</span>
+                <pre class="font-mono text-xs text-easy mt-1" id="prob-sample-output">"olleh"</pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Code Workspace (Reference Solution & Explanation) -->
+          <div class="mb-6">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-gold-400">Reference Solution (Python)</h4>
+              <span class="badge badge-reviewed">Verified Reference</span>
+            </div>
+            <div class="code-block">
+              <div class="code-block-header">
+                <span class="code-language">Python 3</span>
+              </div>
+              <pre><code id="prob-solution-code">def reverse_string(s: str) -> str:
+    char_list = list(s)
+    left, right = 0, len(char_list) - 1
+    while left < right:
+        char_list[left], char_list[right] = char_list[right], char_list[left]
+        left += 1
+        right -= 1
+    return "".join(char_list)</code></pre>
+            </div>
+          </div>
+
+          <!-- Algorithm Explanation & Edge Cases -->
+          <div class="p-4 rounded bg-navy-700 border border-subtle">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-2">Algorithm &amp; Edge Cases</h4>
+            <p class="text-xs text-gray-300 leading-relaxed mb-3" id="prob-explanation">
+              Two-pointer technique swapping characters in-place from the outer ends toward the center until pointers cross.
+            </p>
+            <div class="text-xs text-gold-400">
+              <strong>Edge cases handled:</strong> Empty strings, single-character strings, strings with special symbols and whitespace.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 Deepak Interview Hub. Coding Sandbox.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api/client.js"></script>
+  <script src="/js/utils/toast.js"></script>
+  <script src="/js/components/navbar.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    const sampleProblems = [
+      {
+        id: 1,
+        title: "Reverse a String",
+        difficulty: "Easy",
+        time_comp: "O(n)",
+        space_comp: "O(n)",
+        statement: "Write a function that reverses an input string using two pointers in Python.",
+        sample_in: '"hello"',
+        sample_out: '"olleh"',
+        code: `def reverse_string(s: str) -> str:
+    chars = list(s)
+    left, right = 0, len(chars) - 1
+    while left < right:
+        chars[left], chars[right] = chars[right], chars[left]
+        left += 1
+        right -= 1
+    return "".join(chars)`,
+        explanation: "Two-pointer approach swapping from ends inward. Optimal O(n) runtime with clean pointer manipulation."
+      },
+      {
+        id: 2,
+        title: "Check Palindrome",
+        difficulty: "Easy",
+        time_comp: "O(n)",
+        space_comp: "O(1)",
+        statement: "Determine whether a given string is a palindrome, considering only alphanumeric characters and ignoring cases.",
+        sample_in: '"A man, a plan, a canal: Panama"',
+        sample_out: "True",
+        code: `def is_palindrome(s: str) -> bool:
+    left, right = 0, len(s) - 1
+    while left < right:
+        while left < right and not s[left].isalnum():
+            left += 1
+        while left < right and not s[right].isalnum():
+            right -= 1
+        if s[left].lower() != s[right].lower():
+            return False
+        left += 1
+        right -= 1
+    return True`,
+        explanation: "Pointers advance inward, skipping non-alphanumeric chars, comparing lowercase values in constant space."
+      },
+      {
+        id: 3,
+        title: "Binary Search",
+        difficulty: "Medium",
+        time_comp: "O(log n)",
+        space_comp: "O(1)",
+        statement: "Given a sorted array of distinct integers and a target value, return the index if target is found. If not, return -1.",
+        sample_in: "nums = [-1,0,3,5,9,12], target = 9",
+        sample_out: "4",
+        code: `def binary_search(nums: list[int], target: int) -> int:
+    left, right = 0, len(nums) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1`,
+        explanation: "Classic logarithmic divide-and-conquer on sorted sequence, dividing the search space by half on every iteration."
+      },
+      {
+        id: 4,
+        title: "Find Second-Largest Element",
+        difficulty: "Easy",
+        time_comp: "O(n)",
+        space_comp: "O(1)",
+        statement: "Find the second distinct largest element in an unsorted list in a single traversal.",
+        sample_in: "[12, 35, 1, 10, 34, 1]",
+        sample_out: "34",
+        code: `def second_largest(arr: list[int]) -> int:
+    if len(arr) < 2:
+        return -1
+    first = second = float('-inf')
+    for x in arr:
+        if x > first:
+            second = first
+            first = x
+        elif x > second and x != first:
+            second = x
+    return second if second != float('-inf') else -1`,
+        explanation: "Single pass maintaining first and second largest variables without sorting."
+      },
+      {
+        id: 5,
+        title: "Detect Anagrams",
+        difficulty: "Medium",
+        time_comp: "O(n)",
+        space_comp: "O(k)",
+        statement: "Given two strings s and t, return true if t is an anagram of s, and false otherwise.",
+        sample_in: 's = "anagram", t = "nagaram"',
+        sample_out: "True",
+        code: `def is_anagram(s: str, t: str) -> bool:
+    if len(s) != len(t):
+        return False
+    counts = {}
+    for char in s:
+        counts[char] = counts.get(char, 0) + 1
+    for char in t:
+        if char not in counts or counts[char] == 0:
+            return False
+        counts[char] -= 1
+    return True`,
+        explanation: "Character frequency map counting occurrence frequency in linear time."
+      }
+    ];
+
+    const listEl = document.getElementById('coding-problem-list');
+
+    function selectProblem(prob) {
+      document.getElementById('prob-title').textContent = prob.title;
+      document.getElementById('prob-diff-badge').textContent = prob.difficulty;
+      document.getElementById('prob-diff-badge').className = `badge badge-${prob.difficulty.toLowerCase()}`;
+      document.getElementById('prob-time-comp').textContent = prob.time_comp;
+      document.getElementById('prob-space-comp').textContent = prob.space_comp;
+      document.getElementById('prob-statement').textContent = prob.statement;
+      document.getElementById('prob-sample-input').textContent = prob.sample_in;
+      document.getElementById('prob-sample-output').textContent = prob.sample_out;
+      document.getElementById('prob-solution-code').textContent = prob.code;
+      document.getElementById('prob-explanation').textContent = prob.explanation;
+
+      document.querySelectorAll('.problem-list-item').forEach(el => {
+        el.classList.toggle('is-active', el.dataset.id == prob.id);
+      });
+    }
+
+    listEl.innerHTML = sampleProblems.map((prob, idx) => `
+      <div class="problem-list-item p-3 rounded cursor-pointer border border-subtle transition ${idx === 0 ? 'is-active bg-navy-700' : 'bg-navy-800'}" data-id="${prob.id}">
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-semibold text-white">${prob.title}</span>
+          <span class="badge badge-${prob.difficulty.toLowerCase()} text-xs">${prob.difficulty}</span>
+        </div>
+      </div>
+    `).join('');
+
+    listEl.querySelectorAll('.problem-list-item').forEach((el, idx) => {
+      el.addEventListener('click', () => {
+        selectProblem(sampleProblems[idx]);
+      });
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Test in Progress — Deepak Interview Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/design-system.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <style>
+    .test-header-bar {
+      background-color: var(--color-navy-800);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: var(--space-4) 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .question-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-2);
+    }
+    .q-nav-btn {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-xs);
+      font-weight: var(--font-bold);
+      background-color: var(--color-navy-700);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-sm);
+      color: var(--color-gray-300);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .q-nav-btn.is-current {
+      border-color: var(--color-gold-400);
+      box-shadow: 0 0 0 2px rgba(212, 168, 67, 0.4);
+    }
+    .q-nav-btn.is-answered {
+      background-color: var(--color-easy);
+      color: var(--color-navy-950);
+      border-color: var(--color-easy);
+    }
+    .q-nav-btn.is-reviewed {
+      background-color: var(--color-medium);
+      color: var(--color-navy-950);
+      border-color: var(--color-medium);
+    }
+    .option-card {
+      padding: var(--space-4) var(--space-5);
+      background-color: var(--color-navy-700);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      transition: all var(--transition-fast);
+      user-select: none;
+    }
+    .option-card:hover {
+      background-color: var(--color-navy-600);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .option-card.is-selected {
+      background-color: rgba(212, 168, 67, 0.12);
+      border-color: var(--color-gold-500);
+      color: var(--color-gold-200);
+    }
+  </style>
+</head>
+<body class="page" style="background-color: var(--color-navy-950);">
+  <!-- Top Assessment Bar -->
+  <header class="test-header-bar">
+    <div class="container flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="navbar-logo-badge">D</div>
+        <div>
+          <div class="font-bold text-white text-sm" id="test-title-display">Mock Assessment</div>
+          <div class="text-xs text-gray-400" id="test-details-display">Loading questions...</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <!-- Countdown Timer -->
+        <div class="flex items-center gap-2 px-4 py-2 rounded bg-navy-900 border border-gold">
+          <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Time Left:</span>
+          <span class="font-mono font-bold text-gold text-lg" id="timer-display">--:--</span>
+        </div>
+
+        <button id="submit-test-top-btn" class="btn btn-primary btn-sm">
+          Submit Assessment
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Test Body -->
+  <main class="page-content" style="padding-top: var(--space-6);">
+    <div class="container">
+      <div id="test-loader" class="text-center py-16">
+        <div class="spinner spinner-lg mb-4"></div>
+        <div class="text-sm text-gray-400">Assembling verified assessment questions from backend...</div>
+      </div>
+
+      <div id="test-interface" class="grid grid-cols-4 gap-8" style="display: none;">
+        <!-- Left: Question & Answers Area (3 columns) -->
+        <div class="col-span-3 card p-8">
+          <div class="flex items-center justify-between mb-4 border-b border-subtle pb-4">
+            <div class="flex items-center gap-3">
+              <span class="badge badge-subject" id="q-number-badge">Question 1 of 15</span>
+              <span class="badge badge-medium" id="q-difficulty-badge">Medium</span>
+            </div>
+
+            <button id="mark-review-btn" class="btn btn-secondary btn-sm">
+              🚩 Mark for Review
+            </button>
+          </div>
+
+          <!-- Question Content -->
+          <div class="mb-6">
+            <h2 class="text-xl font-bold text-white leading-relaxed mb-4" id="q-text">
+              <!-- Question Text -->
+            </h2>
+            <div id="q-code-container" style="display: none;">
+              <pre class="code-block p-4"><code id="q-code"></code></pre>
+            </div>
+          </div>
+
+          <!-- Options List -->
+          <div class="flex flex-col gap-3 mb-8" id="options-container">
+            <!-- Dynamically injected option cards -->
+          </div>
+
+          <!-- Question Navigation Buttons -->
+          <div class="flex items-center justify-between border-t border-subtle pt-6">
+            <button id="prev-btn" class="btn btn-secondary" disabled>
+              &larr; Previous Question
+            </button>
+            <div class="flex gap-3">
+              <button id="clear-answer-btn" class="btn btn-ghost btn-sm">Clear Selection</button>
+              <button id="next-btn" class="btn btn-primary">
+                Next Question &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Question Grid & Summary (1 column) -->
+        <div class="card p-6">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-gray-400 mb-4">
+            Question Palette
+          </h3>
+
+          <div class="question-nav-grid mb-6" id="palette-grid">
+            <!-- Numbers 1..N injected -->
+          </div>
+
+          <div class="flex flex-col gap-2 text-xs border-t border-subtle pt-4 mb-6">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded bg-easy inline-block"></span>
+              <span class="text-gray-300">Answered (<span id="palette-answered-count">0</span>)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded bg-medium inline-block"></span>
+              <span class="text-gray-300">Marked for Review (<span id="palette-reviewed-count">0</span>)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded bg-navy-700 border border-light inline-block"></span>
+              <span class="text-gray-300">Unanswered (<span id="palette-unanswered-count">0</span>)</span>
+            </div>
+          </div>
+
+          <button id="submit-test-palette-btn" class="btn btn-primary btn-block">
+            Finish &amp; Submit Test
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Submit Confirmation Modal -->
+  <div class="modal-overlay" id="confirm-modal">
+    <div class="modal modal-md">
+      <div class="modal-header">
+        <h3 class="modal-title">Submit Assessment?</h3>
+        <button class="modal-close" id="modal-cancel-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="text-sm text-gray-300 mb-4">
+          Are you sure you want to finalize and submit your test? Once submitted, your answers will be evaluated server-side and your final score will be calculated.
+        </p>
+        <div class="card p-4 bg-navy-950 mb-2">
+          <div class="flex justify-between text-sm py-1">
+            <span class="text-gray-400">Total Questions:</span>
+            <span class="font-bold text-white" id="modal-total-q">0</span>
+          </div>
+          <div class="flex justify-between text-sm py-1">
+            <span class="text-gray-400">Answered:</span>
+            <span class="font-bold text-easy" id="modal-answered-q">0</span>
+          </div>
+          <div class="flex justify-between text-sm py-1">
+            <span class="text-gray-400">Marked for Review:</span>
+            <span class="font-bold text-medium" id="modal-reviewed-q">0</span>
+          </div>
+          <div class="flex justify-between text-sm py-1">
+            <span class="text-gray-400">Unanswered:</span>
+            <span class="font-bold text-difficult" id="modal-unanswered-q">0</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="modal-continue-btn">Continue Test</button>
+        <button class="btn btn-primary" id="modal-confirm-submit-btn">Yes, Submit Now</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api/client.js"></script>
+  <script src="/js/utils/toast.js"></script>
+  <script src="/js/pages/mock-test-attempt.js"></script>
+</body>
+</html>
+

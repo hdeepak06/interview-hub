@@ -7,7 +7,9 @@ from django.urls import path, re_path, include
 from django.views.static import serve
 from django.conf import settings
 
-FRONTEND_DIR = settings.BASE_DIR.parent / 'frontend'
+FRONTEND_DIR = settings.BASE_DIR / 'frontend'
+if not FRONTEND_DIR.exists():
+    FRONTEND_DIR = settings.BASE_DIR.parent / 'frontend'
 
 urlpatterns = [
     path('admin/', admin.site.urls),

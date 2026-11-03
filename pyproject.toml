@@ -13,3 +13,4 @@ dependencies = [
 
 [tool.vercel]
 entrypoint = "backend/config/wsgi.py"
+

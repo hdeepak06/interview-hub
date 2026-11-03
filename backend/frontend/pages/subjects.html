@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subjects Directory — Deepak Interview Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/design-system.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+</head>
+<body class="page">
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-brand">
+        <div class="navbar-logo-badge">D</div>
+        <div class="navbar-brand-info">
+          <div class="navbar-brand-name">DEEPAK <span>HUB</span></div>
+          <div class="navbar-brand-tagline">INTERVIEW PREPARATION</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="navbar-nav">
+        <a href="/" class="navbar-link">Home</a>
+        <a href="/pages/subjects.html" class="navbar-link is-active">Subjects</a>
+        <a href="/pages/questions.html" class="navbar-link">Question Bank</a>
+        <a href="/pages/coding-practice.html" class="navbar-link">Coding Practice</a>
+        <a href="/pages/sql-practice.html" class="navbar-link">SQL Practice</a>
+        <a href="/pages/mock-test.html" class="navbar-link">Mock Tests</a>
+        <a href="/pages/dashboard.html" class="navbar-link auth-user-only" style="display: none;">Dashboard</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="navbar-actions">
+        <a href="/pages/login.html" class="btn btn-ghost btn-sm auth-guest-only">Log In</a>
+        <a href="/pages/register.html" class="btn btn-primary btn-sm auth-guest-only">Get Started</a>
+
+        <div class="navbar-user auth-user-only" style="display: none;">
+          <div class="avatar avatar-sm auth-user-avatar">U</div>
+          <span class="navbar-user-name auth-user-name">Student</span>
+        </div>
+        <button class="btn btn-ghost btn-sm auth-user-only" data-action="logout" style="display: none;">Logout</button>
+        <button class="navbar-mobile-toggle" aria-label="Toggle navigation drawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Backdrop -->
+  <div class="mobile-drawer-backdrop" aria-hidden="true"></div>
+
+  <!-- Mobile Drawer -->
+  <aside class="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <div class="navbar-brand">
+        <div class="navbar-logo-badge">D</div>
+        <div class="navbar-brand-name">DEEPAK <span>HUB</span></div>
+      </div>
+      <button class="mobile-drawer-close">&times;</button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="/" class="mobile-drawer-link">Home</a>
+      <a href="/pages/subjects.html" class="mobile-drawer-link is-active">Subjects</a>
+      <a href="/pages/questions.html" class="mobile-drawer-link">Question Bank</a>
+      <a href="/pages/coding-practice.html" class="mobile-drawer-link">Coding Practice</a>
+      <a href="/pages/sql-practice.html" class="mobile-drawer-link">SQL Practice</a>
+      <a href="/pages/mock-test.html" class="mobile-drawer-link">Mock Tests</a>
+      <a href="/pages/dashboard.html" class="mobile-drawer-link auth-user-only" style="display: none;">Dashboard</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="page-content">
+    <div class="page-header">
+      <div class="container page-header-inner">
+        <div>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item is-active">Subjects</li>
+          </ul>
+          <h1 class="page-header-title">Technical Interview Curriculum</h1>
+          <p class="page-header-subtitle">Select a subject to practise questions or launch a targeted timed assessment.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pb-16">
+      <div class="subjects-grid">
+        <!-- Python -->
+        <div class="card p-6">
+          <div class="card-subject-icon">🐍</div>
+          <h3 class="text-xl font-bold mb-2">Python Interview Preparation</h3>
+          <p class="text-sm text-gray-400 mb-4">
+            Generators, decorators, memory model, iterators, shallow/deep copy, OOP, collections, and execution mechanics.
+          </p>
+          <div class="flex items-center justify-between mt-auto pt-4 border-t border-subtle">
+            <span class="badge badge-subject">100 Target Questions</span>
+            <a href="/pages/questions.html?subject=python" class="btn btn-primary btn-sm">Practise &rarr;</a>
+          </div>
+        </div>
+
+        <!-- SQL -->
+        <div class="card p-6">
+          <div class="card-subject-icon">🗄️</div>
+          <h3 class="text-xl font-bold mb-2">SQL Interview Preparation</h3>
+          <p class="text-sm text-gray-400 mb-4">
+            Complex joins, window functions (ROW_NUMBER, DENSE_RANK), subqueries, indexing, execution plans, and transactions.
+          </p>
+          <div class="flex items-center justify-between mt-auto pt-4 border-t border-subtle">
+            <span class="badge badge-subject">100 Target Questions</span>
+            <a href="/pages/questions.html?subject=sql" class="btn btn-primary btn-sm">Practise &rarr;</a>
+          </div>
+        </div>
+
+        <!-- DSA -->
+        <div class="card p-6">
+          <div class="card-subject-icon">⚡</div>
+          <h3 class="text-xl font-bold mb-2">Data Structures &amp; Algorithms</h3>
+          <p class="text-sm text-gray-400 mb-4">
+            Arrays, linked lists, stacks, queues, hash maps, trees, graphs, sorting, searching, recursion, and time complexity.
+          </p>
+          <div class="flex items-center justify-between mt-auto pt-4 border-t border-subtle">
+            <span class="badge badge-subject">100 Target Questions</span>
+            <a href="/pages/questions.html?subject=dsa" class="btn btn-primary btn-sm">Practise &rarr;</a>
+          </div>
+        </div>
+
+        <!-- DBMS -->
+        <div class="card p-6">
+          <div class="card-subject-icon">💾</div>
+          <h3 class="text-xl font-bold mb-2">Database Management Systems</h3>
+          <p class="text-sm text-gray-400 mb-4">
+            ACID properties, relational algebra, normal forms (1NF to BCNF), concurrency control, 2PL, and deadlocks.
+          </p>
+          <div class="flex items-center justify-between mt-auto pt-4 border-t border-subtle">
+            <span class="badge badge-subject">60 Target Questions</span>
+            <a href="/pages/questions.html?subject=dbms" class="btn btn-primary btn-sm">Practise &rarr;</a>
+          </div>
+        </div>
+
+        <!-- OOP -->
+        <div class="card p-6">
+          <div class="card-subject-icon">🧩</div>
+          <h3 class="text-xl font-bold mb-2">Object-Oriented Programming</h3>
+          <p class="text-sm text-gray-400 mb-4">
+            Encapsulation, inheritance, polymorphism, abstraction, SOLID design principles, and design patterns.
+          </p>
+          <div class="flex items-center justify-between mt-auto pt-4 border-t border-subtle">
+            <span class="badge badge-subject">60 Target Questions</span>
+            <a href="/pages/questions.html?subject=oop" class="btn btn-primary btn-sm">Practise &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Django -->
+        <div class="card p-6">
+          <div class="card-subject-icon">🎯</div>
+          <h3 class="text-xl font-bold mb-2">Django Framework</h3>
+          <p class="text-sm text-gray-400 mb-4">
+            MVT architecture, ORM querysets, select_related vs prefetch_related, middleware, authentication, and signals.
+          </p>
+          <div class="flex items-center justify-between mt-auto pt-4 border-t border-subtle">
+            <span class="badge badge-subject">40 Target Questions</span>
+            <a href="/pages/questions.html?subject=django" class="btn btn-primary btn-sm">Practise &rarr;</a>
+          </div>
+        </div>
+
+        <!-- REST API -->
+        <div class="card p-6">
+          <div class="card-subject-icon">🌐</div>
+          <h3 class="text-xl font-bold mb-2">REST API Architecture</h3>
+          <p class="text-sm text-gray-400 mb-4">
+            HTTP verbs, idempotent operations, status codes, DRF serializers, viewsets, authentication tokens, and rate limits.
+          </p>
+          <div class="flex items-center justify-between mt-auto pt-4 border-t border-subtle">
+            <span class="badge badge-subject">40 Target Questions</span>
+            <a href="/pages/questions.html?subject=rest-api" class="btn btn-primary btn-sm">Practise &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Operating Systems -->
+        <div class="card p-6">
+          <div class="card-subject-icon">⚙️</div>
+          <h3 class="text-xl font-bold mb-2">Operating Systems</h3>
+          <p class="text-sm text-gray-400 mb-4">
+            Processes vs threads, CPU scheduling algorithms, virtual memory, paging, thrashing, synchronization, and mutexes.
+          </p>
+          <div class="flex items-center justify-between mt-auto pt-4 border-t border-subtle">
+            <span class="badge badge-subject">40 Target Questions</span>
+            <a href="/pages/questions.html?subject=os" class="btn btn-primary btn-sm">Practise &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Computer Networks -->
+        <div class="card p-6">
+          <div class="card-subject-icon">📡</div>
+          <h3 class="text-xl font-bold mb-2">Computer Networks</h3>
+          <p class="text-sm text-gray-400 mb-4">
+            OSI and TCP/IP stack, 3-way handshake, TCP vs UDP, DNS resolution flow, HTTP/HTTPS, TLS handshake, and subnetting.
+          </p>
+          <div class="flex items-center justify-between mt-auto pt-4 border-t border-subtle">
+            <span class="badge badge-subject">40 Target Questions</span>
+            <a href="/pages/questions.html?subject=cn" class="btn btn-primary btn-sm">Practise &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Aptitude -->
+        <div class="card p-6">
+          <div class="card-subject-icon">🧠</div>
+          <h3 class="text-xl font-bold mb-2">Aptitude &amp; Reasoning</h3>
+          <p class="text-sm text-gray-400 mb-4">
+            Quantitative aptitude (percentages, ratios, time/work), logical reasoning (blood relations, series), and verbal.
+          </p>
+          <div class="flex items-center justify-between mt-auto pt-4 border-t border-subtle">
+            <span class="badge badge-subject">100 Target Questions</span>
+            <a href="/pages/questions.html?subject=aptitude" class="btn btn-primary btn-sm">Practise &rarr;</a>
+          </div>
+        </div>
+
+        <!-- HR -->
+        <div class="card p-6">
+          <div class="card-subject-icon">🤝</div>
+          <h3 class="text-xl font-bold mb-2">HR Interview Preparation</h3>
+          <p class="text-sm text-gray-400 mb-4">
+            Self-introduction, STAR method behavioral scenarios, conflict resolution, strengths/weaknesses, and hiring pitch.
+          </p>
+          <div class="flex items-center justify-between mt-auto pt-4 border-t border-subtle">
+            <span class="badge badge-subject">50 Target Questions</span>
+            <a href="/pages/questions.html?subject=hr" class="btn btn-primary btn-sm">Practise &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Project Viva -->
+        <div class="card p-6">
+          <div class="card-subject-icon">🎓</div>
+          <h3 class="text-xl font-bold mb-2">Project Viva Examination</h3>
+          <p class="text-sm text-gray-400 mb-4">
+            Architecture justification, database normalization defense, API design, security, scalability, and viva trade-offs.
+          </p>
+          <div class="flex items-center justify-between mt-auto pt-4 border-t border-subtle">
+            <span class="badge badge-subject">50 Target Questions</span>
+            <a href="/pages/questions.html?subject=viva" class="btn btn-primary btn-sm">Practise &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 Deepak Interview Hub. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api/client.js"></script>
+  <script src="/js/utils/toast.js"></script>
+  <script src="/js/components/navbar.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
+

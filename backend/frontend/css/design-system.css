@@ -1,0 +1,892 @@
+/* ==========================================================================
+   DEEPAK INTERVIEW HUB — Design System
+   ==========================================================================
+   A comprehensive CSS design system for a premium EdTech interview
+   preparation platform. Built mobile-first with responsive breakpoints at
+   320px, 360px, 375px, 390px, 430px, 768px, 1024px, 1366px, and 1920px.
+
+   Table of Contents:
+   1. CSS Custom Properties (Design Tokens)
+      1.1 Colors
+      1.2 Typography
+      1.3 Spacing
+      1.4 Borders & Shadows
+      1.5 Transitions
+      1.6 Layout
+      1.7 Z-Index Scale
+   2. CSS Reset
+   3. Base Typography
+   4. Utility Classes
+      4.1 Layout Utilities
+      4.2 Spacing Utilities
+      4.3 Text Utilities
+      4.4 Display Utilities
+      4.5 Responsive Helpers
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+   ==========================================================================
+   All design tokens are defined on :root so they cascade everywhere and can
+   be overridden contextually (e.g., inside a light-theme wrapper if ever
+   needed). Values use rem for scalability; pixel equivalents noted in
+   comments for quick reference.
+   ========================================================================== */
+
+:root {
+
+  /* ------------------------------------------------------------------------
+     1.1 COLORS
+     ------------------------------------------------------------------------
+     Navy palette   — backgrounds and layered surfaces
+     Gold palette   — primary accent / brand highlight
+     Gray palette   — neutral text and UI chrome
+     Semantic colors — difficulty badges, status indicators
+     ------------------------------------------------------------------------ */
+
+  /* Navy — deep, dark backgrounds that anchor the premium feel */
+  --color-navy-950: #060913;
+  --color-navy-900: #0a0e1a;   /* Primary page background                */
+  --color-navy-800: #111827;   /* Card / elevated surface background     */
+  --color-navy-700: #1a2332;   /* Lighter surface / hover state          */
+  --color-navy-600: #243044;   /* Subtle highlight / active state        */
+  --color-navy-500: #334155;   /* Muted UI chrome                        */
+
+  /* Gold — brand accent, CTAs, highlights */
+  --color-gold-600: #b8922e;   /* Darker gold for pressed / active state */
+  --color-gold-500: #d4a843;   /* PRIMARY brand accent                  */
+  --color-gold-400: #e6be5a;   /* Hover / lighter emphasis               */
+  --color-gold-300: #f0d078;   /* Subtle highlight                       */
+  --color-gold-200: #f7e3a0;   /* Gentle tint                            */
+  --color-gold-100: #fdf4d9;   /* Near-white warm tint                   */
+
+  /* Neutral grays */
+  --color-white:    #ffffff;
+  --color-gray-50:  #f9fafb;
+  --color-gray-100: #f3f4f6;   /* Primary body text on dark backgrounds  */
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;   /* Secondary / muted text                 */
+  --color-gray-500: #6b7280;   /* Placeholder text                       */
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* Difficulty-level semantic colors */
+  --color-easy:          #22c55e;
+  --color-easy-bg:       rgba(34, 197, 94, 0.1);
+  --color-medium:        #f59e0b;
+  --color-medium-bg:     rgba(245, 158, 11, 0.1);
+  --color-difficult:     #ef4444;
+  --color-difficult-bg:  rgba(239, 68, 68, 0.1);
+
+  /* General status / feedback colors */
+  --color-success:       #22c55e;
+  --color-success-bg:    rgba(34, 197, 94, 0.1);
+  --color-error:         #ef4444;
+  --color-error-bg:      rgba(239, 68, 68, 0.1);
+  --color-warning:       #f59e0b;
+  --color-warning-bg:    rgba(245, 158, 11, 0.1);
+  --color-info:          #3b82f6;
+  --color-info-bg:       rgba(59, 130, 246, 0.1);
+
+
+  /* ------------------------------------------------------------------------
+     1.2 TYPOGRAPHY
+     ------------------------------------------------------------------------
+     Three font stacks:
+       • Inter           — body copy, UI labels
+       • Plus Jakarta Sans — headings, display text
+       • JetBrains Mono  — code, monospaced content
+     Sizes follow a modular scale from 12px (.75rem) to 48px (3rem).
+     ------------------------------------------------------------------------ */
+
+  /* Font families */
+  --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', var(--font-sans);
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Font sizes — rem values with px equivalents */
+  --text-xs:   0.75rem;    /* 12px */
+  --text-sm:   0.875rem;   /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg:   1.125rem;   /* 18px */
+  --text-xl:   1.25rem;    /* 20px */
+  --text-2xl:  1.5rem;     /* 24px */
+  --text-3xl:  1.875rem;   /* 30px */
+  --text-4xl:  2.25rem;    /* 36px */
+  --text-5xl:  3rem;       /* 48px */
+
+  /* Line heights */
+  --leading-tight:   1.25;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.75;
+
+  /* Font weights */
+  --font-normal:   400;
+  --font-medium:   500;
+  --font-semibold: 600;
+  --font-bold:     700;
+
+
+  /* ------------------------------------------------------------------------
+     1.3 SPACING
+     ------------------------------------------------------------------------
+     4px-based scale. Use these tokens for ALL margin, padding, and gap
+     values so the UI maintains a consistent rhythm.
+     ------------------------------------------------------------------------ */
+
+  --space-1:  0.25rem;   /*  4px */
+  --space-2:  0.5rem;    /*  8px */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-5:  1.25rem;   /* 20px */
+  --space-6:  1.5rem;    /* 24px */
+  --space-8:  2rem;      /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
+
+
+  /* ------------------------------------------------------------------------
+     1.4 BORDERS & SHADOWS
+     ------------------------------------------------------------------------
+     Borders use white-alpha for glass-like layering on dark backgrounds.
+     Shadows are heavier (higher opacity) because they sit on dark surfaces
+     where subtle shadows would be invisible.
+     ------------------------------------------------------------------------ */
+
+  /* Border radii */
+  --radius-sm:   0.25rem;   /*  4px */
+  --radius-md:   0.5rem;    /*  8px */
+  --radius-lg:   0.75rem;   /* 12px */
+  --radius-xl:   1rem;      /* 16px */
+  --radius-full: 9999px;    /* Pill / circle                            */
+
+  /* Shorthand border declarations (width + style + color) */
+  --border-subtle: 1px solid rgba(255, 255, 255, 0.06);
+  --border-light:  1px solid rgba(255, 255, 255, 0.1);
+  --border-medium: 1px solid rgba(255, 255, 255, 0.15);
+  --border-gold:   1px solid rgba(212, 168, 67, 0.3);
+
+  /* Box shadows — progressively heavier for elevation */
+  --shadow-sm:   0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md:   0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg:   0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-xl:   0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 4px 15px rgba(212, 168, 67, 0.15);
+
+
+  /* ------------------------------------------------------------------------
+     1.5 TRANSITIONS
+     ------------------------------------------------------------------------
+     Three speed tiers. Use --transition-fast for micro-interactions (hover
+     color), --transition-base for general UI state changes, and
+     --transition-slow for layout / transform animations.
+     ------------------------------------------------------------------------ */
+
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+
+
+  /* ------------------------------------------------------------------------
+     1.6 LAYOUT
+     ------------------------------------------------------------------------
+     Container widths, fixed element dimensions.
+     ------------------------------------------------------------------------ */
+
+  --container-sm:  640px;
+  --container-md:  768px;
+  --container-lg:  1024px;
+  --container-xl:  1200px;
+  --container-2xl: 1400px;
+
+  --navbar-height: 4rem;     /* 64px */
+  --sidebar-width: 16rem;    /* 256px */
+
+
+  /* ------------------------------------------------------------------------
+     1.7 Z-INDEX SCALE
+     ------------------------------------------------------------------------
+     Stacking contexts ordered in predictable 100-step increments so
+     layering is never a guessing game.
+     ------------------------------------------------------------------------ */
+
+  --z-dropdown:       100;
+  --z-sticky:         200;
+  --z-navbar:         300;
+  --z-modal-backdrop: 400;
+  --z-modal:          500;
+  --z-toast:          600;
+  --z-tooltip:        700;
+}
+
+
+/* ==========================================================================
+   2. CSS RESET
+   ==========================================================================
+   A modern, opinionated reset that levels the playing field across browsers.
+   Incorporates best practices from modern-normalize, Josh Comeau's reset,
+   and Andy Bell's "A (more) modern CSS reset".
+   ========================================================================== */
+
+/* --- 2.1 Box model: border-box everywhere -------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* --- 2.2 Remove default margins & padding -------------------------------- */
+*{
+  margin: 0;
+  padding: 0;
+}
+
+/* --- 2.3 Root & body setup ----------------------------------------------- */
+html {
+  /* Prevent font-size inflation on mobile */
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+
+  /* Smooth scrolling for anchor links — disabled when user prefers reduced motion */
+  scroll-behavior: smooth;
+
+  /* Base font size stays at browser default (usually 16px) */
+  font-size: 100%;
+}
+
+/* Respect user motion preferences — disable smooth scroll */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* Also disable all CSS transitions/animations for users who prefer reduced motion */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  /* Typography */
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  font-weight: var(--font-normal);
+
+  /* Dark theme base colors */
+  background-color: var(--color-navy-900);
+  color: var(--color-gray-100);
+
+  /* Full viewport height minimum */
+  min-height: 100vh;
+
+  /* Anti-aliased text rendering for crisp type on dark backgrounds */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* --- 2.4 Media elements -------------------------------------------------- */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;       /* Prevent images from overflowing containers */
+  height: auto;          /* Maintain aspect ratio                      */
+}
+
+/* --- 2.5 Lists ----------------------------------------------------------- */
+ul,
+ol {
+  list-style: none;
+}
+
+/* --- 2.6 Form elements inherit typography -------------------------------- */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* --- 2.7 Button reset ---------------------------------------------------- */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* --- 2.8 Anchor reset ---------------------------------------------------- */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* --- 2.9 Table reset ----------------------------------------------------- */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* --- 2.10 Prevent textarea from being resized horizontally --------------- */
+textarea {
+  resize: vertical;
+}
+
+/* --- 2.11 Ensure text wrapping to prevent overflow ----------------------- */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* --- 2.12 Remove default fieldset styling -------------------------------- */
+fieldset {
+  border: none;
+}
+
+
+/* ==========================================================================
+   3. BASE TYPOGRAPHY
+   ==========================================================================
+   Establishes the typographic hierarchy. Headings use Plus Jakarta Sans for
+   a bold, modern feel. Body text uses Inter for excellent readability at
+   small sizes. Code elements use JetBrains Mono.
+   ========================================================================== */
+
+/* --- 3.1 Headings -------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-white);
+  letter-spacing: -0.01em;    /* Slight negative tracking for display type */
+}
+
+h1 {
+  font-size: var(--text-4xl);  /* 36px — page titles                       */
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: var(--text-3xl);  /* 30px — section headers                   */
+}
+
+h3 {
+  font-size: var(--text-2xl);  /* 24px — sub-section headers               */
+}
+
+h4 {
+  font-size: var(--text-xl);   /* 20px — card titles                       */
+}
+
+h5 {
+  font-size: var(--text-lg);   /* 18px — minor headings                    */
+}
+
+h6 {
+  font-size: var(--text-base); /* 16px — smallest heading                  */
+  font-weight: var(--font-semibold);
+}
+
+/* Responsive heading scale — smaller screens get tighter sizes */
+@media (max-width: 767px) {
+  h1 { font-size: var(--text-3xl); }   /* 30px on mobile */
+  h2 { font-size: var(--text-2xl); }   /* 24px on mobile */
+  h3 { font-size: var(--text-xl); }    /* 20px on mobile */
+}
+
+/* Gold accent modifier for headings — use class .heading--gold */
+.heading--gold {
+  color: var(--color-gold-500);
+}
+
+/* --- 3.2 Body text ------------------------------------------------------- */
+p {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-gray-100);
+}
+
+/* Spacing between consecutive paragraphs */
+p + p {
+  margin-top: var(--space-4);
+}
+
+/* --- 3.3 Links ----------------------------------------------------------- */
+a {
+  color: var(--color-gold-500);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-gold-400);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-gold-500);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* --- 3.4 Inline text styles ---------------------------------------------- */
+strong,
+b {
+  font-weight: var(--font-semibold);
+  color: var(--color-white);
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+small {
+  font-size: var(--text-sm);
+}
+
+/* --- 3.5 Code & preformatted text ---------------------------------------- */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;              /* Slightly smaller than surrounding text */
+  background-color: var(--color-navy-800);
+  color: var(--color-gold-400);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-sm);
+  border: var(--border-subtle);
+}
+
+/* Block-level code */
+pre {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  background-color: var(--color-navy-800);
+  color: var(--color-gray-100);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-lg);
+  border: var(--border-subtle);
+  overflow-x: auto;                /* Horizontal scroll for long code lines */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Reset inline code styles inside pre blocks */
+pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+/* --- 3.6 Blockquote ------------------------------------------------------ */
+blockquote {
+  border-left: 3px solid var(--color-gold-500);
+  padding-left: var(--space-4);
+  margin-left: 0;
+  color: var(--color-gray-300);
+  font-style: italic;
+}
+
+/* --- 3.7 Horizontal rule ------------------------------------------------- */
+hr {
+  border: none;
+  border-top: var(--border-subtle);
+  margin: var(--space-8) 0;
+}
+
+/* --- 3.8 Selection highlight --------------------------------------------- */
+::selection {
+  background-color: rgba(212, 168, 67, 0.3);
+  color: var(--color-white);
+}
+
+/* --- 3.9 Text color utility classes -------------------------------------- */
+
+/* Gold text — for accents, labels, highlights */
+.text-gold {
+  color: var(--color-gold-500);
+}
+
+/* White text — for high-emphasis / headings on dark surfaces */
+.text-white {
+  color: var(--color-white);
+}
+
+/* Muted text — for secondary, less-important content */
+.text-muted {
+  color: var(--color-gray-400);
+}
+
+
+/* ==========================================================================
+   4. UTILITY CLASSES
+   ==========================================================================
+   Single-purpose classes that can be composed together in HTML. Follow a
+   Tailwind-inspired naming convention for familiarity. Utilities are marked
+   !important where appropriate to ensure they always win specificity battles
+   — this is by design for utility-first CSS.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   4.1 LAYOUT UTILITIES
+   -------------------------------------------------------------------------- */
+
+/* Container — centers content with responsive max-width and padding */
+.container {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+/* Wider padding on larger screens */
+@media (min-width: 768px) {
+  .container {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+}
+
+/* --- Flexbox --- */
+.flex           { display: flex !important; }
+.flex-col       { flex-direction: column !important; }
+.flex-wrap      { flex-wrap: wrap !important; }
+.flex-1         { flex: 1 1 0% !important; }
+.items-center   { align-items: center !important; }
+.items-start    { align-items: flex-start !important; }
+.items-end      { align-items: flex-end !important; }
+.justify-between { justify-content: space-between !important; }
+.justify-center  { justify-content: center !important; }
+.justify-start   { justify-content: flex-start !important; }
+.justify-end     { justify-content: flex-end !important; }
+
+/* Gap utilities — mapped to the spacing scale */
+.gap-1 { gap: var(--space-1) !important; }
+.gap-2 { gap: var(--space-2) !important; }
+.gap-3 { gap: var(--space-3) !important; }
+.gap-4 { gap: var(--space-4) !important; }
+.gap-5 { gap: var(--space-5) !important; }
+.gap-6 { gap: var(--space-6) !important; }
+.gap-8 { gap: var(--space-8) !important; }
+
+/* --- CSS Grid --- */
+.grid {
+  display: grid !important;
+  gap: var(--space-4);
+}
+
+/* Single column by default (mobile-first), expanding at breakpoints */
+.grid-cols-2 {
+  grid-template-columns: 1fr;
+}
+
+.grid-cols-3 {
+  grid-template-columns: 1fr;
+}
+
+.grid-cols-4 {
+  grid-template-columns: 1fr;
+}
+
+/* 2-column grid kicks in at tablet */
+@media (min-width: 768px) {
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 3-column grid kicks in at desktop */
+@media (min-width: 1024px) {
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-cols-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 4-column grid kicks in at wide desktop */
+@media (min-width: 1366px) {
+  .grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* --- Display --- */
+.hidden       { display: none !important; }
+.block        { display: block !important; }
+.inline-flex  { display: inline-flex !important; }
+.inline-block { display: inline-block !important; }
+
+
+/* --------------------------------------------------------------------------
+   4.2 SPACING UTILITIES
+   --------------------------------------------------------------------------
+   Named with direction abbreviation + scale value:
+     m = margin,  p = padding
+     t = top,  b = bottom,  l = left,  r = right
+     x = horizontal (left+right),  y = vertical (top+bottom)
+   -------------------------------------------------------------------------- */
+
+/* --- Margin Top --- */
+.mt-1  { margin-top: var(--space-1) !important; }
+.mt-2  { margin-top: var(--space-2) !important; }
+.mt-3  { margin-top: var(--space-3) !important; }
+.mt-4  { margin-top: var(--space-4) !important; }
+.mt-5  { margin-top: var(--space-5) !important; }
+.mt-6  { margin-top: var(--space-6) !important; }
+.mt-8  { margin-top: var(--space-8) !important; }
+.mt-10 { margin-top: var(--space-10) !important; }
+.mt-12 { margin-top: var(--space-12) !important; }
+.mt-16 { margin-top: var(--space-16) !important; }
+
+/* --- Margin Bottom --- */
+.mb-1  { margin-bottom: var(--space-1) !important; }
+.mb-2  { margin-bottom: var(--space-2) !important; }
+.mb-3  { margin-bottom: var(--space-3) !important; }
+.mb-4  { margin-bottom: var(--space-4) !important; }
+.mb-5  { margin-bottom: var(--space-5) !important; }
+.mb-6  { margin-bottom: var(--space-6) !important; }
+.mb-8  { margin-bottom: var(--space-8) !important; }
+.mb-10 { margin-bottom: var(--space-10) !important; }
+.mb-12 { margin-bottom: var(--space-12) !important; }
+.mb-16 { margin-bottom: var(--space-16) !important; }
+
+/* --- Margin Left --- */
+.ml-1  { margin-left: var(--space-1) !important; }
+.ml-2  { margin-left: var(--space-2) !important; }
+.ml-3  { margin-left: var(--space-3) !important; }
+.ml-4  { margin-left: var(--space-4) !important; }
+.ml-6  { margin-left: var(--space-6) !important; }
+.ml-8  { margin-left: var(--space-8) !important; }
+
+/* --- Margin Right --- */
+.mr-1  { margin-right: var(--space-1) !important; }
+.mr-2  { margin-right: var(--space-2) !important; }
+.mr-3  { margin-right: var(--space-3) !important; }
+.mr-4  { margin-right: var(--space-4) !important; }
+.mr-6  { margin-right: var(--space-6) !important; }
+.mr-8  { margin-right: var(--space-8) !important; }
+
+/* --- Margin Horizontal (auto-center) --- */
+.mx-auto { margin-left: auto !important; margin-right: auto !important; }
+
+/* --- Margin Vertical --- */
+.my-1  { margin-top: var(--space-1) !important;  margin-bottom: var(--space-1) !important; }
+.my-2  { margin-top: var(--space-2) !important;  margin-bottom: var(--space-2) !important; }
+.my-3  { margin-top: var(--space-3) !important;  margin-bottom: var(--space-3) !important; }
+.my-4  { margin-top: var(--space-4) !important;  margin-bottom: var(--space-4) !important; }
+.my-6  { margin-top: var(--space-6) !important;  margin-bottom: var(--space-6) !important; }
+.my-8  { margin-top: var(--space-8) !important;  margin-bottom: var(--space-8) !important; }
+.my-10 { margin-top: var(--space-10) !important; margin-bottom: var(--space-10) !important; }
+.my-12 { margin-top: var(--space-12) !important; margin-bottom: var(--space-12) !important; }
+
+/* --- Padding (all sides) --- */
+.p-1  { padding: var(--space-1) !important; }
+.p-2  { padding: var(--space-2) !important; }
+.p-3  { padding: var(--space-3) !important; }
+.p-4  { padding: var(--space-4) !important; }
+.p-5  { padding: var(--space-5) !important; }
+.p-6  { padding: var(--space-6) !important; }
+.p-8  { padding: var(--space-8) !important; }
+.p-10 { padding: var(--space-10) !important; }
+
+/* --- Padding Horizontal --- */
+.px-1  { padding-left: var(--space-1) !important;  padding-right: var(--space-1) !important; }
+.px-2  { padding-left: var(--space-2) !important;  padding-right: var(--space-2) !important; }
+.px-3  { padding-left: var(--space-3) !important;  padding-right: var(--space-3) !important; }
+.px-4  { padding-left: var(--space-4) !important;  padding-right: var(--space-4) !important; }
+.px-5  { padding-left: var(--space-5) !important;  padding-right: var(--space-5) !important; }
+.px-6  { padding-left: var(--space-6) !important;  padding-right: var(--space-6) !important; }
+.px-8  { padding-left: var(--space-8) !important;  padding-right: var(--space-8) !important; }
+
+/* --- Padding Vertical --- */
+.py-1  { padding-top: var(--space-1) !important;  padding-bottom: var(--space-1) !important; }
+.py-2  { padding-top: var(--space-2) !important;  padding-bottom: var(--space-2) !important; }
+.py-3  { padding-top: var(--space-3) !important;  padding-bottom: var(--space-3) !important; }
+.py-4  { padding-top: var(--space-4) !important;  padding-bottom: var(--space-4) !important; }
+.py-5  { padding-top: var(--space-5) !important;  padding-bottom: var(--space-5) !important; }
+.py-6  { padding-top: var(--space-6) !important;  padding-bottom: var(--space-6) !important; }
+.py-8  { padding-top: var(--space-8) !important;  padding-bottom: var(--space-8) !important; }
+.py-10 { padding-top: var(--space-10) !important; padding-bottom: var(--space-10) !important; }
+.py-12 { padding-top: var(--space-12) !important; padding-bottom: var(--space-12) !important; }
+
+
+/* --------------------------------------------------------------------------
+   4.3 TEXT UTILITIES
+   -------------------------------------------------------------------------- */
+
+/* Text alignment */
+.text-center { text-align: center !important; }
+.text-left   { text-align: left !important; }
+.text-right  { text-align: right !important; }
+
+/* Text size utilities — mirror the type scale tokens */
+.text-xs   { font-size: var(--text-xs) !important; }
+.text-sm   { font-size: var(--text-sm) !important; }
+.text-base { font-size: var(--text-base) !important; }
+.text-lg   { font-size: var(--text-lg) !important; }
+.text-xl   { font-size: var(--text-xl) !important; }
+.text-2xl  { font-size: var(--text-2xl) !important; }
+.text-3xl  { font-size: var(--text-3xl) !important; }
+.text-4xl  { font-size: var(--text-4xl) !important; }
+.text-5xl  { font-size: var(--text-5xl) !important; }
+
+/* Font weight utilities */
+.font-normal   { font-weight: var(--font-normal) !important; }
+.font-medium   { font-weight: var(--font-medium) !important; }
+.font-semibold { font-weight: var(--font-semibold) !important; }
+.font-bold     { font-weight: var(--font-bold) !important; }
+
+/* Text transform */
+.uppercase  { text-transform: uppercase !important; letter-spacing: 0.05em; }
+.capitalize { text-transform: capitalize !important; }
+.lowercase  { text-transform: lowercase !important; }
+.normal-case { text-transform: none !important; }
+
+/* Truncate — single-line text overflow with ellipsis */
+.truncate {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* Line clamp — multi-line truncation (2 lines) */
+.line-clamp-2 {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+.line-clamp-3 {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+/* No text wrapping */
+.whitespace-nowrap { white-space: nowrap !important; }
+
+
+/* --------------------------------------------------------------------------
+   4.4 DISPLAY & ACCESSIBILITY UTILITIES
+   -------------------------------------------------------------------------- */
+
+/* Screen-reader only — visually hidden but accessible to assistive tech */
+.sr-only,
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Focus-visible — make screen-reader-only elements visible when focused
+   (useful for skip-links) */
+.sr-only:focus-visible,
+.visually-hidden:focus-visible {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  padding: var(--space-2) var(--space-4) !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+}
+
+/* Overflow control */
+.overflow-hidden  { overflow: hidden !important; }
+.overflow-x-auto  { overflow-x: auto !important; }
+.overflow-y-auto  { overflow-y: auto !important; }
+
+/* Position utilities */
+.relative { position: relative !important; }
+.absolute { position: absolute !important; }
+.fixed    { position: fixed !important; }
+.sticky   { position: sticky !important; }
+
+/* Width & height */
+.w-full { width: 100% !important; }
+.h-full { height: 100% !important; }
+.min-h-screen { min-height: 100vh !important; }
+
+
+/* --------------------------------------------------------------------------
+   4.5 RESPONSIVE HELPERS
+   -------------------------------------------------------------------------- */
+
+/* Hide on mobile (below 768px), show on tablet+ */
+.hide-mobile {
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+  .hide-mobile {
+    display: initial !important;
+  }
+}
+
+/* Show on mobile (below 768px), hide on tablet+ */
+@media (min-width: 768px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   END OF DESIGN SYSTEM
+   ========================================================================== */

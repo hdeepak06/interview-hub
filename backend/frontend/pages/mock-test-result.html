@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assessment Results — Deepak Interview Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/design-system.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+</head>
+<body class="page">
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-brand">
+        <div class="navbar-logo-badge">D</div>
+        <div class="navbar-brand-info">
+          <div class="navbar-brand-name">DEEPAK <span>HUB</span></div>
+          <div class="navbar-brand-tagline">INTERVIEW PREPARATION</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="navbar-nav">
+        <a href="/" class="navbar-link">Home</a>
+        <a href="/pages/subjects.html" class="navbar-link">Subjects</a>
+        <a href="/pages/questions.html" class="navbar-link">Question Bank</a>
+        <a href="/pages/coding-practice.html" class="navbar-link">Coding Practice</a>
+        <a href="/pages/sql-practice.html" class="navbar-link">SQL Practice</a>
+        <a href="/pages/mock-test.html" class="navbar-link">Mock Tests</a>
+        <a href="/pages/dashboard.html" class="navbar-link auth-user-only" style="display: none;">Dashboard</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="navbar-actions">
+        <a href="/pages/dashboard.html" class="btn btn-secondary btn-sm auth-user-only" style="display: none;">Go to Dashboard</a>
+        <a href="/pages/mock-test.html" class="btn btn-primary btn-sm">Retake Test</a>
+        <button class="navbar-mobile-toggle" aria-label="Toggle navigation drawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="container py-8">
+      <!-- Score Banner -->
+      <div class="card p-8 text-center mb-8 bg-navy-800 border-gold">
+        <div class="badge badge-subject mb-3" id="result-subject-badge">Subject Assessment</div>
+        <h1 class="text-3xl font-bold text-white mb-2">Assessment Completed</h1>
+        <p class="text-sm text-gray-400 mb-6">Your answers have been evaluated against verified reference criteria.</p>
+
+        <div class="flex items-center justify-center gap-12 my-6">
+          <div>
+            <div class="text-4xl font-extrabold text-gold-400 font-heading" id="score-percentage">0%</div>
+            <div class="text-xs uppercase tracking-wider text-gray-400 mt-1">Accuracy Score</div>
+          </div>
+          <div class="h-12 w-px bg-gray-700"></div>
+          <div>
+            <div class="text-4xl font-extrabold text-easy font-heading" id="score-fraction">0 / 0</div>
+            <div class="text-xs uppercase tracking-wider text-gray-400 mt-1">Correct Answers</div>
+          </div>
+        </div>
+
+        <div class="flex justify-center gap-4 mt-6">
+          <a href="/pages/mock-test.html" class="btn btn-primary">Take Another Test</a>
+          <a href="/pages/dashboard.html" class="btn btn-secondary">View Dashboard</a>
+        </div>
+      </div>
+
+      <!-- Question by Question Review -->
+      <div class="card p-6">
+        <h2 class="text-xl font-bold text-white mb-4">Detailed Question Review &amp; Explanations</h2>
+        <div id="review-questions-list" class="flex flex-col gap-6">
+          <!-- Injected dynamically -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 Deepak Interview Hub. Assessment Engine.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api/client.js"></script>
+  <script src="/js/utils/toast.js"></script>
+  <script src="/js/components/navbar.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const storedResult = sessionStorage.getItem('deepak_last_test_result');
+      if (!storedResult) {
+        window.location.href = '/pages/mock-test.html';
+        return;
+      }
+
+      const result = JSON.parse(storedResult);
+      document.getElementById('result-subject-badge').textContent = (result.subject || 'Technical').toUpperCase();
+      document.getElementById('score-percentage').textContent = `${Math.round(result.score_percentage || 0)}%`;
+      document.getElementById('score-fraction').textContent = `${result.correct_count || 0} / ${result.total_questions || 0}`;
+
+      const listEl = document.getElementById('review-questions-list');
+      const questions = result.questions || [];
+
+      if (questions.length === 0) {
+        listEl.innerHTML = '<div class="text-gray-400 text-sm">No review items available.</div>';
+        return;
+      }
+
+      listEl.innerHTML = questions.map((q, idx) => {
+        const isCorrect = q.is_correct;
+        return `
+          <div class="p-5 rounded bg-navy-950 border ${isCorrect ? 'border-easy' : 'border-error'}">
+            <div class="flex items-center justify-between mb-3">
+              <span class="badge ${isCorrect ? 'badge-easy' : 'badge-difficult'}">
+                ${isCorrect ? '✓ Correct' : '✕ Incorrect'}
+              </span>
+              <span class="text-xs text-gray-500">Question ${idx + 1}</span>
+            </div>
+
+            <div class="font-bold text-white mb-3 text-base">${q.question_text}</div>
+
+            <div class="text-xs text-gray-400 mb-2">
+              Your Answer: <strong class="${isCorrect ? 'text-easy' : 'text-difficult'}">${q.user_answer || 'No answer'}</strong>
+            </div>
+            <div class="text-xs text-gray-400 mb-4">
+              Correct Answer: <strong class="text-easy">${q.correct_answer || 'See explanation'}</strong>
+            </div>
+
+            ${q.explanation ? `
+              <div class="p-3 rounded bg-navy-900 border border-subtle text-xs text-gray-300 leading-relaxed">
+                <span class="font-bold text-gold-400 uppercase">Explanation:</span> ${q.explanation}
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+    });
+  </script>
+</body>
+</html>
+

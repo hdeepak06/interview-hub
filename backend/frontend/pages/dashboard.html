@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard — Deepak Interview Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/design-system.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+</head>
+<body class="page">
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-brand" aria-label="Deepak Interview Hub Home">
+        <div class="navbar-logo-badge">D</div>
+        <div class="navbar-brand-info">
+          <div class="navbar-brand-name">DEEPAK <span>HUB</span></div>
+          <div class="navbar-brand-tagline">INTERVIEW PREPARATION</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="navbar-nav" aria-label="Main Navigation">
+        <a href="/" class="navbar-link">Home</a>
+        <a href="/pages/subjects.html" class="navbar-link">Subjects</a>
+        <a href="/pages/questions.html" class="navbar-link">Question Bank</a>
+        <a href="/pages/coding-practice.html" class="navbar-link">Coding Practice</a>
+        <a href="/pages/sql-practice.html" class="navbar-link">SQL Practice</a>
+        <a href="/pages/mock-test.html" class="navbar-link">Mock Tests</a>
+        <a href="/pages/dashboard.html" class="navbar-link is-active">Dashboard</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="navbar-actions">
+        <a href="/pages/bookmarks.html" class="btn btn-ghost btn-icon btn-sm" title="View Bookmarks">
+          🔖
+        </a>
+        <div class="navbar-user">
+          <div class="avatar avatar-sm auth-user-avatar">U</div>
+          <span class="navbar-user-name auth-user-name">Student</span>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-action="logout" title="Sign out">Logout</button>
+        <button class="navbar-mobile-toggle" aria-label="Toggle navigation drawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Backdrop -->
+  <div class="mobile-drawer-backdrop" aria-hidden="true"></div>
+
+  <!-- Mobile Drawer -->
+  <aside class="mobile-drawer" aria-label="Mobile Menu">
+    <div class="mobile-drawer-header">
+      <div class="navbar-brand">
+        <div class="navbar-logo-badge">D</div>
+        <div class="navbar-brand-name">DEEPAK <span>HUB</span></div>
+      </div>
+      <button class="mobile-drawer-close" aria-label="Close menu">&times;</button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="/" class="mobile-drawer-link">Home</a>
+      <a href="/pages/subjects.html" class="mobile-drawer-link">Subjects</a>
+      <a href="/pages/questions.html" class="mobile-drawer-link">Question Bank</a>
+      <a href="/pages/coding-practice.html" class="mobile-drawer-link">Coding Practice</a>
+      <a href="/pages/sql-practice.html" class="mobile-drawer-link">SQL Practice</a>
+      <a href="/pages/mock-test.html" class="mobile-drawer-link">Mock Tests</a>
+      <a href="/pages/dashboard.html" class="mobile-drawer-link is-active">Dashboard</a>
+      <a href="/pages/bookmarks.html" class="mobile-drawer-link">Bookmarks</a>
+    </nav>
+    <div class="mobile-drawer-footer">
+      <button class="btn btn-secondary btn-block" data-action="logout">Sign Out</button>
+    </div>
+  </aside>
+
+  <!-- Main Dashboard Content -->
+  <main class="page-content">
+    <div class="page-header">
+      <div class="container page-header-inner">
+        <div>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item is-active">Dashboard</li>
+          </ul>
+          <h1 class="page-header-title">Student Preparation Dashboard</h1>
+          <p class="page-header-subtitle">Track your learning velocity, assessment results, and mastery across all modules.</p>
+        </div>
+        <div>
+          <a href="/pages/mock-test.html" class="btn btn-primary">Take a Mock Test</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Loading indicator -->
+      <div id="dashboard-loader" class="text-center py-12">
+        <div class="spinner spinner-md mb-3"></div>
+        <div class="text-sm text-gray-400">Loading your real preparation statistics...</div>
+      </div>
+
+      <div id="dashboard-content" style="display: none;">
+        <!-- Top Metrics Grid -->
+        <div class="stats-grid">
+          <div class="card card-stat">
+            <span class="card-stat-icon">🎯</span>
+            <div class="card-stat-value" id="stat-attempted">0</div>
+            <div class="card-stat-label">Questions Attempted</div>
+          </div>
+
+          <div class="card card-stat">
+            <span class="card-stat-icon">✅</span>
+            <div class="card-stat-value text-easy" id="stat-accuracy">0%</div>
+            <div class="card-stat-label">Overall Accuracy</div>
+          </div>
+
+          <div class="card card-stat">
+            <span class="card-stat-icon">📝</span>
+            <div class="card-stat-value" id="stat-mock-tests">0</div>
+            <div class="card-stat-label">Mock Tests Completed</div>
+          </div>
+
+          <div class="card card-stat">
+            <span class="card-stat-icon">🔥</span>
+            <div class="card-stat-value text-gold" id="stat-streak">0 Days</div>
+            <div class="card-stat-label">Active Learning Streak</div>
+          </div>
+        </div>
+
+        <!-- 2 Column Layout: Subject Mastery & Recent Activity -->
+        <div class="grid grid-cols-2 gap-8 mb-12">
+          <!-- Subject Mastery Breakdown -->
+          <div class="card p-6">
+            <h2 class="text-lg font-bold mb-4 flex items-center justify-between">
+              <span>Subject-Wise Progress</span>
+              <a href="/pages/subjects.html" class="text-xs text-gold-400 font-normal">Explore Subjects &rarr;</a>
+            </h2>
+            <div id="subject-progress-list" class="flex flex-col gap-4">
+              <!-- Dynamically populated or empty state -->
+            </div>
+          </div>
+
+          <!-- Recent Activity & Test Attempts -->
+          <div class="card p-6">
+            <h2 class="text-lg font-bold mb-4 flex items-center justify-between">
+              <span>Recent Activity</span>
+              <a href="/pages/questions.html" class="text-xs text-gold-400 font-normal">Practise Now &rarr;</a>
+            </h2>
+            <div id="recent-activity-list" class="flex flex-col gap-3">
+              <!-- Dynamically populated or empty state -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Difficulty Progress Row -->
+        <div class="card p-6 mb-12">
+          <h2 class="text-lg font-bold mb-4">Difficulty Distribution</h2>
+          <div class="grid grid-cols-3 gap-6">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="font-semibold text-easy">Easy</span>
+                <span id="diff-easy-count" class="text-gray-400">0 Solved</span>
+              </div>
+              <div class="progress-bar">
+                <div id="diff-easy-bar" class="progress-bar-fill easy" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="font-semibold text-medium">Medium</span>
+                <span id="diff-medium-count" class="text-gray-400">0 Solved</span>
+              </div>
+              <div class="progress-bar">
+                <div id="diff-medium-bar" class="progress-bar-fill medium" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="font-semibold text-difficult">Difficult</span>
+                <span id="diff-difficult-count" class="text-gray-400">0 Solved</span>
+              </div>
+              <div class="progress-bar">
+                <div id="diff-difficult-bar" class="progress-bar-fill difficult" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 Deepak Interview Hub. Real data driven.</div>
+        <div class="footer-legal-links">
+          <a href="/">Home</a>
+          <a href="/pages/questions.html">Question Bank</a>
+          <a href="/pages/mock-test.html">Mock Tests</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api/client.js"></script>
+  <script src="/js/utils/toast.js"></script>
+  <script src="/js/components/navbar.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/pages/dashboard.js"></script>
+</body>
+</html>
+
